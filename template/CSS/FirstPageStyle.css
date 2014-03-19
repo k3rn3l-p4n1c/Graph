@@ -1,0 +1,191 @@
+@charset "utf-8";
+/* Simple fluid media
+   Note: Fluid media requires that you remove the media's height and width attributes from the HTML
+   http://www.alistapart.com/articles/fluid-images/ 
+*/
+img, object, embed, video {
+	max-width: 100%;
+}
+
+/* IE 6 does not support max-width so default to width 100% */
+.ie6 img {
+	width:100%;
+}
+
+/*
+	Dreamweaver Fluid Grid Properties
+	----------------------------------
+	dw-num-cols-mobile:		4;
+	dw-num-cols-tablet:		8;
+	dw-num-cols-desktop:	12;
+	dw-gutter-percentage:	25;
+	
+	Inspiration from "Responsive Web Design" by Ethan Marcotte 
+	http://www.alistapart.com/articles/responsive-web-design
+	
+	and Golden Grid System by Joni Korpi
+	http://goldengridsystem.com/
+*/
+
+.fluid {
+	clear: both;
+	margin-left: 0;
+	width: 100%;
+	float: left;
+	display: block;
+}
+
+.fluidList {
+    list-style:none;
+    list-style-image:none;
+    margin:0;
+    padding:0;        
+}
+
+/* Mobile Layout: 480px and below. */
+  
+.gridContainer {
+	margin-left: 0px;
+	margin-right: 0px;
+	width: 100%;
+	padding-left: 0px;
+	padding-right: 0px;
+	clear: none;
+	float: none;
+}
+#div1 {
+}
+.zeroMargin_mobile {
+    margin-left: 0;
+}
+.hide_mobile {
+    display: none;
+}
+
+/* Tablet Layout: 481px to 768px. Inherits styles from: Mobile Layout. */
+
+@media only screen and (min-width: 481px) {
+
+.gridContainer {
+	width: 100%;
+	padding-left: 0%;
+	padding-right: 0%;
+	clear: none;
+	float: none;
+	margin-left: auto;
+}
+#div1 {
+}
+.zeroMargin_tablet {
+    margin-left: 0;
+}
+.hide_tablet {
+    display: none;
+}
+}
+
+/* Desktop Layout: 769px to a max of 1232px.  Inherits styles from: Mobile Layout and Tablet Layout. */
+
+@media only screen and (min-width: 769px) {
+
+.gridContainer {
+	width: 100%;
+	padding-left: 0%;
+	padding-right: 0%;
+	margin: auto;
+	clear: none;
+	float: none;
+	margin-left: auto;
+}
+
+.zeroMargin_desktop {
+    margin-left: 0;
+}
+.hide_desktop {
+    display: none;
+}
+}
+div#imageContainer{
+	margin:auto;
+	margin-top:0px;
+	padding:0px;
+	background:#61c2bc;
+	border-bottom:solid #c3c3c3 4px;
+	margin-top:-5%;
+	width:100%;
+	float:left;
+}
+body{
+	padding:0px;
+	background:#ffF;
+	margin-right:0px;
+	margin-left:0px;
+	width:100%;
+	font-family:"Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, sans-serif;
+}
+div#about{
+	width:100%;
+	background:#fff;
+}
+.btn{
+	background:#454545;
+	width:10%;
+	min-height:25px;
+	color:#fff;
+	text-decoration:none;
+	padding:5px;
+	text-align:center;
+	border-radius:2px;
+}
+.btn:hover,.btn:active{
+	color:#fff;
+	cursor:pointer;
+}
+.btn:hover{
+	background:#39F;
+}
+.sign-holder{
+	min-height:4%;
+	white-space:nowrap;
+	vertical-align:middle;
+	position:absolute;
+	margin-left:25%;
+	margin-top:-27%;
+	width:17%;
+}
+a#signIN,a#signUP{
+	float:left;
+	margin-bottom:5%;
+	width:100%;
+	position:relative;
+}
+.container-fluid{
+	padding-left:1.5%;
+	padding-right:1.5%;
+	margin-left:auto;
+	margin-right:auto;
+}
+.col-ls-3{
+	width:25%
+}
+#user{
+	text-align:justify;
+	float:left;
+	margin-left:5%;
+}
+#user h3{
+	text-align:center;
+}
+video{
+	margin:auto;
+	text-align:center;
+}
+.videocontainer{
+	margin:auto;
+	text-align:center;
+}
+#about{
+	position:relative;
+	height:100%;
+	float:left;
+}
