@@ -20,7 +20,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = 'am=#-+@+9x4-gt92((qt^0y_@fmawp@b(+jt7k2#gj1uri^imk'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+#There is a way to automatically toggle between the two environments
+#This solves the probable Problems forever.
+import socket
+ 
+if socket.gethostname() == '<a href="http://productionserver.com" target="_blank">productionserver.com</a>':
+    DEBUG = False
+else:
+    DEBUG = True
 
 TEMPLATE_DEBUG = True
 
@@ -36,6 +43,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'messages',
 )
 
 MIDDLEWARE_CLASSES = (
