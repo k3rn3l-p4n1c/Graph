@@ -1,9 +1,0 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-import os
-
-def login(request):
-	#source_page = open("./template/create.html",'r').read()
-	return HttpResponse("Create")
-    
-# Create your views here.
