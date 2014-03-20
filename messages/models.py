@@ -3,8 +3,8 @@ from django.contrib.auth.models import User
 
 class Message(models.Model):
 	# id is auto generated
-	userid_sender = models.ForeignKey(User,related_name='sender')
-	userid_receiver = models.ForeignKey(User,related_name='receiver')
+	SenderID = models.ForeignKey(User,related_name='sender')
+	ReceiverID = models.ForeignKey(User,related_name='receiver')
 	subject = models.CharField(max_length=60,null=True,blank=True,default="No Subject")
 	message = models.TextField()
 	timestamp = models.DateTimeField(auto_now_add='true')
