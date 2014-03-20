@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+import os
 
 def login(request):
-    return HttpResponse("Login")
+	source_page = open("./template/login.html",'r').read()
+	return HttpResponse(source_page)
     
 # Create your views here.
