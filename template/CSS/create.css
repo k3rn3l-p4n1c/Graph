@@ -104,6 +104,15 @@ legend{
 	font-weight:bold;
 	margin-left:20px;
 }
+.btn{
+	width:15%;
+	background:#09F;
+	color:white;
+	min-height:35px;
+}
+.other{
+	margin-left:20px;
+}
 .zeroMargin_mobile {
     margin-left: 0;
 }
