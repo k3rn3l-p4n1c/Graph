@@ -1,6 +1,112 @@
-<html>
-  <body>
-    In page sabte nam (register) hast! ma behesh migim "Creating a new vertex!!!" B-) 
-    lotfan y bad bakhti be dadesh berese! :D :D
-  </body>
+<!doctype html>
+<!--[if lt IE 7]> <html class="ie6 oldie"> <![endif]-->
+<!--[if IE 7]>    <html class="ie7 oldie"> <![endif]-->
+<!--[if IE 8]>    <html class="ie8 oldie"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Untitled Document</title>
+<link href="boilerplate.css" rel="stylesheet" type="text/css">
+<link href="CSS/create.css" rel="stylesheet" type="text/css">
+<!-- 
+To learn more about the conditional comments around the html tags at the top of the file:
+paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
+
+Do the following if you're using your customized build of modernizr (http://www.modernizr.com/):
+* insert the link to your js here
+* remove the link below to the html5shiv
+* add the "no-js" class to the html tags at the top
+* you can also remove the link to respond.min.js if you included the MQ Polyfill in your modernizr build 
+-->
+<!--[if lt IE 9]>
+<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<script src="respond.min.js"></script>
+</head>
+<body>
+	<div class="gridContainer clearfix">
+		<div id="signUpForm" class="fluid">
+        	<form>
+            	<fieldset><legend class="title"><h2>Create Vertex</h2></legend></fieldset>
+                <fieldset><legend>Account Setting</legend>
+                	<input type="text" id="firstName" name="firstname"placeholder="First Name">
+                    <input type="text" id="lastName" name="lastname" placeholder="Last Name"><br>
+                    <input type="email" id="email" name="email" placeholder="youremail@example.com"><br>
+                    <input type="password" id="password" name="password" placeholder="Password"><br>
+                    <input type="password" id="confPassword" placeholder="Retype your Password"><br>
+                    Birthday
+                    <input type="number" id="year" name="year" placeholder="year">
+                    <select id="month" name="month">
+                    	<option selected="1" value="0">month</option>
+                    	<option value="1">Jan</option>
+                        <option value="2">Feb</option>
+                        <option value="3">Mar</option>
+                        <option value="4">Apr</option>
+                        <option value="5">May</option>
+                        <option value="6">Jun</option>
+                        <option value="7">Jul</option>
+                        <option value="8">Aug</option>
+                        <option value="9">Sep</option>
+                        <option value="10">Oct</option>
+                        <option value="11">Nov</option>
+                        <option value="12">Dec</option>
+                    </select>
+                    <select id="day" name="day">
+                    <option value="0" selected"1">Day</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                    <option value="24">24</option>
+                    <option value="25">25</option>
+                    <option value="26">26</option>
+                    <option value="27">27</option>
+                    <option value="28">28</option>
+                    <option value="29">29</option>
+                    <option value="30">30</option>
+                    <option value="31">31</option>
+                    </select>
+                    <br>
+                    Avatar <input type="file" name="avatar">
+                   
+                </fieldset>
+                <fieldset><legend>More About you</legend>
+                    <textarea id="describtion" placeholder="Describe yourself"></textarea><br><br>
+                    <input type="tel" name="tel" placeholder="Phone number" id="tel">
+                    <input type="text" name="country" placeholder="Country" id="nationality">
+                    <input type="text" name="city" placeholder="City" id="city"><br>
+                    <input type="radio" id="sex" checked="1" name="sex"value="male">Male
+                    <input type="radio" id="sex" name="sex" value="female">Female
+                    <br>
+                    
+                    
+                </fieldset>
+                <fieldset>
+                	<input type="submit" class="btn" name="submit" value="SignUp">
+                </fieldset>
+            </form>
+        </div>
+	</div>
+</body>
 </html>
