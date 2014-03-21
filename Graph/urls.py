@@ -10,5 +10,6 @@ urlpatterns = patterns('',
     url('', include('login.urls')),
 	url(r'^login/', include('login.urls')),
 	url(r'^create/', include('create.urls')),
+	url(r'^vertex/', include('vertex.urls')),
     url(r'^admin/', include(admin.site.urls)),
 )
