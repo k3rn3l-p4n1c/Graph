@@ -100,3 +100,4 @@ class EmailForm(forms.Form):
 		if email1 != email2:
 			raise forms.ValidationError("The two email fields didn't match.")
 		return email2
+		#
