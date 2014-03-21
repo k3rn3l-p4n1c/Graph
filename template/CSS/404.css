@@ -53,65 +53,20 @@ img, object, embed, video {
 	clear: none;
 	float: none;
 }
-body{
-	font-family:"Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, sans-serif;
-	color:#454545;
-	background:#61C2BC;
-}
-#signUpForm{
+#div1 {
+	text-align:center;
 	margin:auto;
-	margin-top : 20px;
-	background:#fff;
-	/*border:solid 1px #d9d9d9;*/
-	border-radius:15px 15px 15px 15px;
-	box-shadow:3px 3px 0px 2px #727272;
-	margin-bottom:20px;
+	font-family:"Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, sans-serif;
+	font-size:3em;
+	color:#454545;
+	text-shadow:1px 1px #fff;
 }
-form input{
-	margin-left : 20px;
-	margin-right:5px;
-	margin-bottom:15px;
-	border:solid 1px #e3e3e3;
-	padding:2px;
-	border-radius:5px;
+img{
+	margin:auto;
+	text-align:center;
 }
-fieldset p{
-	width:11%;
-	display:inline-block;
-}
-fieldset{
-	padding:15px;
-	margin-bottom:15px;
-	border-bottom:1px solid #f3f3f3;
-}
-textarea{
-	width:15em;
-	border-radius:5px;
-	border : 1px solid #e3e3e3;
-	margin-left:20px;
-}
-.title{
-	margin-bottom:0px;
-	margin-top:0px;
-	padding:0px;
-}
-.title h2{
-	margin-bottom:0px;
-	color:#F66;
-}
-legend{
-	font-size : 2em;
-	font-weight:bold;
-	margin-left:20px;
-}
-.btn{
-	width:15%;
-	background:#09F;
-	color:white;
-	min-height:35px;
-}
-.other{
-	margin-left:20px;
+body{
+	background:#61C2BC;
 }
 .zeroMargin_mobile {
     margin-left: 0;
@@ -122,7 +77,7 @@ legend{
 
 /* Tablet Layout: 481px to 768px. Inherits styles from: Mobile Layout. */
 
-@media only screen and (min-width: 481px) {
+@media only screen and (max-width: 481px) {
 
 .gridContainer {
 	width: 90.675%;
@@ -144,7 +99,7 @@ legend{
 
 /* Desktop Layout: 769px to a max of 1232px.  Inherits styles from: Mobile Layout and Tablet Layout. */
 
-@media only screen and (min-width: 769px) {
+@media only screen and (max-width: 769px) {
 
 .gridContainer {
 	width: 88.5%;
@@ -157,6 +112,7 @@ legend{
 	margin-left: auto;
 }
 #div1 {
+
 }
 .zeroMargin_desktop {
     margin-left: 0;
