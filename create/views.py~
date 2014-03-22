@@ -22,7 +22,11 @@ def create_page(request):
 def create(request):
 	from urlparse import urlparse
 	import cgi
-	query = request.META['QUERY_STRING']
+	print '##########################################'
+	print request.META
+	print '##########################################'
+	print "path",request.META['PATH_INFO']
+	query = urlparse(request.META['PATH_INFO']).query
 	print "query",query
 	new_vertex_information = cgi.parse_qs(query)
 	print "info",new_vertex_information

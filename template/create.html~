@@ -1,4 +1,4 @@
-
+<<<<<<< HEAD
 <!doctype html>
 <!--[if lt IE 7]> <html class="ie6 oldie"> <![endif]-->
 <!--[if IE 7]>    <html class="ie7 oldie"> <![endif]-->
@@ -110,3 +110,11 @@ Do the following if you're using your customized build of modernizr (http://www.
         </div>
 	</div>
 </body>
+=======
+<html>
+  <body>
+    In page sabte nam (register) hast! ma behesh migim "Creating a new vertex!!!" B-) 
+    lotfan y bad bakhti be dadesh berese! :D :D
+  </body>
+>>>>>>> 5446d8e9f93113a41fed678241a5478d2d6bf2d0
+</html>
