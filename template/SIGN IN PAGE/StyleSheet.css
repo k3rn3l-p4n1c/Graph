@@ -1,0 +1,20 @@
+body {
+  color: #000000;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 14px;
+}
+
+a {
+  color: #1E18CC;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #AE29A5;
+}
+
+a:hover {
+  color: #0AE61C;
+  text-decoration: underline;
+}
+

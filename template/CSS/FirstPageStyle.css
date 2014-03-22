@@ -114,7 +114,10 @@ div#imageContainer{
 	margin-top:-5%;
 	width:100%;
 	float:left;
+<<<<<<< HEAD
 	background-image:url(../IMG/bg.png);
+=======
+>>>>>>> 5446d8e9f93113a41fed678241a5478d2d6bf2d0
 }
 body{
 	padding:0px;
