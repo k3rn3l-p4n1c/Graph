@@ -8,6 +8,7 @@ class Vertex(models.Model,object):
     def __unicode__(self):  # Python 3: def __str__(self):
         return self.name
     def __init__(self,info_dict)
-    	pass
+    	for key in info_dict.keys():
+    	    self.__dict__[key] = info_dict[key]
         
 # Create your models here.
