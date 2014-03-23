@@ -7,7 +7,7 @@ class Vertex(models.Model,object):
 	reg_date = models.DateTimeField('date published')
 	def __unicode__(self):  # Python 3: def __str__(self):
 		return self.name
-	def __init__(self,info_dict):
+	def __init__(self,info_dict)
 		self.firstname = info_dict["firs_name"]
         
 # Create your models here.
