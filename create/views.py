@@ -13,20 +13,45 @@ from django.contrib.sites.models import Site
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
+from django.utils import timezone
 
+from vertex.models import Vertex
+from urlparse import urlparse
+import cgi
+from datetime import datetime
 
-def create_page(request):
-	source_page = open("./template/create.html",'r').read()
-	return HttpResponse(source_page)
+#http://127.0.0.1:8000/create/?firstname=bardia&lastname=heydari&email=az.bardia13%40gmail.com&password=123123&year=1994&month=12&day=9&tel=09123456789&country=iran&city=tehran&sex=male&submit=Create
+	
 	
 def create(request):
-	from urlparse import urlparse
-	import cgi
 	query = request.META['QUERY_STRING']
-	print "query",query
-	new_vertex_information = cgi.parse_qs(query)
-	print "info",new_vertex_information
-	return HttpResponse(new_vertex_information)
+	if not query:
+		source_page = open("./template/create.html",'r').read()
+		return HttpResponse(source_page)
+	else:
+		#{'city': ['tehran'], 'tel': ['09123456789'], 'firstname': ['bardia'], 'lastname': ['heydari'], 'sex': ['male'], 'submit': ['Create'], 'month': ['12'], 'country': ['iran'], 'year': ['1994'], 'password': ['123123'], 'email': ['az.bardia13@gmail.com'], 'day': ['9']}
+		#password = models.CharField(max_length=50)
+		#firstname = models.CharField(max_length=50)
+		#lastname = models.CharField(max_length=50)
+		#email = models.EmailField(max_length=75)
+		#tel = models.CharField(max_length=20)
+		#city = models.CharField(max_length=20)
+		#country = models.CharField(max_length=20)
+		#sex = models.BooleanField() # 1 for male  // 0 for female
+		#birthdate = models.DateField()
+		#reg_date = models.DateTimeField('date published')
+		
+		d = cgi.parse_qs(query) #dictionary
+		
+		newsex = d['sex'] == "male"
+		newbirth = datetime(int(d['year'][0]), int(d['month'][0]), int(d['day'][0]))
+		
+		new_vertex = Vertex(password = d['password'][0], firstname = d['firstname'][0], lastname = d['lastname'][0], email = d['email'][0], tel = d['tel'][0], city = d['city'][0], country = d['country'][0], sex = newsex, birthdate = newbirth, reg_date = timezone.now() )
+		
+		new_vertex.save()
+		
+		return HttpResponse(new_vertex_information)
+	
 
 # Create your views here.
 @csrf_protect

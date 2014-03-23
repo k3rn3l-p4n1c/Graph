@@ -3,11 +3,18 @@ import datetime
 from django.utils import timezone
 
 class Vertex(models.Model,object):
-    name = models.CharField(max_length=200)
+    password = models.CharField(max_length=50)
+    firstname = models.CharField(max_length=50)
+    lastname = models.CharField(max_length=50)
+    email = models.EmailField(max_length=75)
+    tel = models.CharField(max_length=20)
+    city = models.CharField(max_length=20)
+    country = models.CharField(max_length=20)
+    sex = models.BooleanField() # 1 for male  // 0 for female
+    birthdate = models.DateField
     reg_date = models.DateTimeField('date published')
+    
     def __unicode__(self):  # Python 3: def __str__(self):
-        return self.name
-    def __init__(self,info_dict)
-    	for key in info_dict.keys():
-    	    self.__dict__[key] = info_dict[key]        
-# Create your models here.
+        return self.name    
+# Create your models here. 
+
