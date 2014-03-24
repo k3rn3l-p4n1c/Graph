@@ -46,11 +46,11 @@ def create(request):
 		newsex = d['sex'] == "male"
 		newbirth = datetime(int(d['year'][0]), int(d['month'][0]), int(d['day'][0]))
 		
-		new_vertex = Vertex(password = d['password'][0], firstname = d['firstname'][0], lastname = d['lastname'][0], email = d['email'][0], tel = d['tel'][0], city = d['city'][0], country = d['country'][0], sex = newsex, birthdate = newbirth, reg_date = timezone.now() )
+		new_vertex = Vertex( firstname = d['firstname'][0], lastname = d['lastname'][0], email = d['email'][0], tel = d['tel'][0], city = d['city'][0], country = d['country'][0], sex = newsex, birthdate = newbirth, reg_date = timezone.now() )
 		
 		new_vertex.save()
 		
-		return HttpResponse(new_vertex_information)
+		return HttpResponse(d)
 	
 
 # Create your views here.
