@@ -46,7 +46,17 @@ def create(request):
 		newsex = d['sex'] == "male"
 		newbirth = datetime(int(d['year'][0]), int(d['month'][0]), int(d['day'][0]))
 		
-		new_vertex = Vertex( firstname = d['firstname'][0], lastname = d['lastname'][0], email = d['email'][0], tel = d['tel'][0], city = d['city'][0], country = d['country'][0], sex = newsex, birthdate = newbirth, reg_date = timezone.now() )
+		uid = d['firstname'][0]+'.'+d['lastname'][0]
+		i = 1
+		while Vertex.objects.get(user_id = uid):
+			i += 1
+			uid = d['firstname'][0]+'.'+d['lastname'][0] + str(i)
+		
+		## HANDLING SOME EXCEPTIONS
+		## 
+		## END OF HANDLING SOME EXCEPTIONS
+		
+		new_vertex = Vertex(password = d['password'][0], firstname = d['firstname'][0], lastname = d['lastname'][0], email = d['email'][0], tel = d['tel'][0], city = d['city'][0], country = d['country'][0], sex = newsex, birthdate = newbirth, reg_date = timezone.now() )
 		
 		new_vertex.save()
 		

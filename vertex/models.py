@@ -3,7 +3,8 @@ import datetime
 from django.utils import timezone
 
 class Vertex(models.Model,object):
-    #password = models.CharField(max_length=50)
+    password = models.CharField(max_length=50)
+    user_id = models.CharField(max_length=100)
     firstname = models.CharField(max_length=50)
     lastname = models.CharField(max_length=50)
     email = models.EmailField(max_length=75)
