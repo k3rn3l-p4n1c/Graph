@@ -1,8 +1,15 @@
 from django.shortcuts import render_to_response,RequestContext
 from django.http import HttpResponse,HttpResponseRedirect
+import cgi
 
 def view(request):
-	return render_to_response('firstpage.html', context_instance=RequestContext(request))
+	query = request.META['QUERY_STRING']
+	msg = ""
+	if query:
+		msg = cgi.parse_qs(query)['server_message'][0]
+	return render_to_response('firstpage.html',
+		{"SERVER_MESSAGE":msg},
+		context_instance=RequestContext(request))
 
 def login(request):
 	try:

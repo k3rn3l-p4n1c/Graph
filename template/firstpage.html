@@ -6,6 +6,7 @@
      <fieldset>
         <form action="/login/login" method="POST" id="Sign Up!" style="margin-top:3%;">
 		        {% csrf_token %}
+		        {{SERVER_MESSAGE}}
                 <legend style="font-size:18; color:#000000 ;"><b>Login</b></legend>
                 <input type="email" size="25" name="email" placeholder="Email" style="font-size:16;"><br>
                 <input type="password" size="25" name="password" placeholder="Password" style="font-size:16;"><br>
