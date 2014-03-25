@@ -4,7 +4,7 @@
 <body>
     <div >		
      <fieldset>
-        <form action="/home/" method="POST" id="Sign Up!" style="margin-top:3%;">
+        <form action="/login/" method="POST" id="Sign Up!" style="margin-top:3%;">
 		        {% csrf_token %}
                 <legend style="font-size:18; color:#000000 ;"><b>Login</b></legend>
                 <input type="email" size="25" name="email" placeholder="Email" style="font-size:16;"><br>
