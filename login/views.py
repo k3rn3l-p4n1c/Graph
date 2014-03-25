@@ -1,6 +1,9 @@
 from django.shortcuts import render_to_response,RequestContext
 from django.http import HttpResponse,HttpResponseRedirect
 import cgi
+from vertex.models import Vertex
+from time import sleep
+from urllib import urlencode
 
 def view(request):
 	query = request.META['QUERY_STRING']
@@ -17,6 +20,17 @@ def login(request):
 		pwd = request.POST['password']
 	except :
 		return HttpResponse('Error')
+	
+	try:
+		client = Vertex.objects.get(email = eml)
+		if client.password != pwd:
+			raise LookupError()
+	except :
+		sleep(3)
+		d = {'server_message':"Wrong username or password."}
+		query_str = urlencode(d)
+		return HttpResponseRedirect('/login/?'+query_str)
+	
 	response = HttpResponseRedirect('/home/')
   	response.set_cookie( 'email' , eml )
   	response.set_cookie( 'password' , pwd)
