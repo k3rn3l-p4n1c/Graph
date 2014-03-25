@@ -1,7 +1,0 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-
-def home(requset):
-	print requset.POST
-	return HttpResponse("home.")
-# Create your views here.
