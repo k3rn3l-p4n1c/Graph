@@ -52,7 +52,7 @@ def create(request):
 		i = 1
 		while Vertex.objects.get(user_id = uid):
 			i += 1
-			uid = d['firstname'][0]+'.'+d['lastname'][0] + str(i)
+			uid = d['firstname'][0]+'_'+d['lastname'][0] + str(i)
 		
 		#var_code = MakeRandomVarificationCode()
 		

@@ -19,5 +19,13 @@ class Vertex(models.Model,object):
     
     def __unicode__(self):  # Python 3: def __str__(self):
         return self.firstname+' '+self.lastname
+        
+class Edge(models.Model,object): 
+	""" tail ==> head """
+	vertex_head = models.ForeignKey(Vertex)
+	vertex_tail = models.ForeignKey(Vertex)
+	def __unicode__(self):  # Python 3: def __str__(self):
+        return self.vertex_tail.user_id+' to '+self.vertex_head.user_id
+	
 # Create your models here. 
 
