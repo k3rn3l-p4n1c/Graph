@@ -1,8 +1,8 @@
 from django.db import models
 from django.utils import timezone
 import datetime
-
-class Vertex(models.Model,object):
+#syncdb your databases
+class Vertex(models.Model,object): 
     password = models.CharField(max_length=50)
     user_id = models.CharField(max_length=100)
     firstname = models.CharField(max_length=50)
