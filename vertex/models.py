@@ -14,6 +14,8 @@ class Vertex(models.Model,object):
     sex = models.BooleanField() # 1 for male  // 0 for female
     birthdate = models.DateField()
     reg_date = models.DateTimeField('date published')
+    #statues = models.CharField(max_length=30)
+    #varificationCode = models.models.CharField(max_length=50)
     
     def __unicode__(self):  # Python 3: def __str__(self):
         return self.firstname+' '+self.lastname

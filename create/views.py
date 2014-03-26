@@ -19,6 +19,8 @@ from vertex.models import Vertex
 from urlparse import urlparse
 import cgi
 from datetime import datetime
+from tools.mail import SendComfirmationEmail
+from tools.random import MakeRandomVarificationCode
 
 #http://127.0.0.1:8000/create/?firstname=bardia&lastname=heydari&email=az.bardia13%40gmail.com&password=123123&year=1994&month=12&day=9&tel=09123456789&country=iran&city=tehran&sex=male&submit=Create
 	
@@ -52,11 +54,15 @@ def create(request):
 			i += 1
 			uid = d['firstname'][0]+'.'+d['lastname'][0] + str(i)
 		
+		#var_code = MakeRandomVarificationCode()
+		
 		## HANDLING SOME EXCEPTIONS
 		## 
 		## END OF HANDLING SOME EXCEPTIONS
 		
 		new_vertex = Vertex(password = d['password'][0], firstname = d['firstname'][0], lastname = d['lastname'][0], email = d['email'][0], tel = d['tel'][0], city = d['city'][0], country = d['country'][0], sex = newsex, birthdate = newbirth, reg_date = timezone.now() )
+		
+		#SendComfirmationEmail()
 		
 		new_vertex.save()
 		
