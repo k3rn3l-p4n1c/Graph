@@ -82,7 +82,9 @@ fieldset p{
 fieldset{
 	padding:15px;
 	margin-bottom:15px;
-	border-bottom:1px solid #f3f3f3;
+	box-shadow:none;
+	border:none;
+	border-bottom:1px solid #ccc;
 }
 textarea{
 	width:15em;
