@@ -1,7 +1,4 @@
 from django.db import models
-
-# Create your models here.
-from django.db import models
 from datetime import datetime
 from django.contrib.auth.signals import user_logged_in, user_logged_out  
 from django.contrib.auth.models import User
@@ -39,5 +36,3 @@ class ChatUser(models.Model):
 	last_accessed = models.DateTimeField(auto_now_add=True)
 	
 User.profile = property(lambda u: ChatUser.objects.get_or_create(user=u,defaults={'gravatar_url':generate_avatar(u.email),'username':u.username,'userID':hash_username(u.username)})[0])
-
-
