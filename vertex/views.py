@@ -1,6 +1,8 @@
 from django.shortcuts import render_to_response,RequestContext
 from django.http import HttpResponse,HttpResponseRedirect
-from vertex.models import Vertex
+from vertex.models import Vertex,Edge,Friends,Flow
+from Django.utils import timezone
+
    
 def profile(request, user_id):
 	try:
@@ -20,13 +22,14 @@ def profile(request, user_id):
         client = Vertex.objects.get(email = eml)
         fname = vertex.firstname
         lname = vertex.lastname
-        flowlist = vertex.flow_set.all()
+        flowlist = vertex.flow_set.order_by('-pub_date')[:5] 
         vertex_friends = Friends.objects.get(name = user_id+'_friends')
 		if client.password != pwd:
 			raise LookupError()
 	except:
 		client = None
-	
+
+	context = {'fname' = fname,'lname'=lname,'flowlist'=flowlist,'vertex_friends' = vertex_friends}
 	me = False
 	if client:
 		if client.user_id == vertex.user_id:
