@@ -44,9 +44,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'vertex',
-    'chat',
-    
-    
+    'chat',   
 )
 
 MIDDLEWARE_CLASSES = (
