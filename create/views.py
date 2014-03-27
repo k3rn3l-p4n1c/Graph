@@ -23,7 +23,7 @@ from tools.mail import SendComfirmationEmail
 from tools.random import MakeRandomVarificationCode
 
 #http://127.0.0.1:8000/create/?firstname=bardia&lastname=heydari&email=az.bardia13%40gmail.com&password=123123&year=1994&month=12&day=9&tel=09123456789&country=iran&city=tehran&sex=male&submit=Create
-	
+#http://127.0.0.1:8000/create/?firstname=Soheil&lastname=Khodayari&email=soheil%40khodayari.com&password=123123&year=1995&month=1&day=1&tel=09123456789&country=Iran&city=Tehran&sex=male&submit=Create	
 	
 def create(request):
 	query = request.META['QUERY_STRING']
@@ -48,9 +48,9 @@ def create(request):
 		newsex = d['sex'] == "male"
 		newbirth = datetime(int(d['year'][0]), int(d['month'][0]), int(d['day'][0]))
 		
-		uid = d['firstname'][0]+'.'+d['lastname'][0]
+		uid = d['firstname'][0]+'_'+d['lastname'][0]
 		i = 1
-		while Vertex.objects.get(user_id = uid):
+		while len(Vertex.objects.filter(user_id = uid)):
 			i += 1
 			uid = d['firstname'][0]+'_'+d['lastname'][0] + str(i)
 		
@@ -66,7 +66,7 @@ def create(request):
 		
 		new_vertex.save()
 		
-		return HttpResponse(d)
+		return HttpResponseRedirect('/login/)
 	
 
 # Create your views here.
