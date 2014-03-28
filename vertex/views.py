@@ -1,6 +1,9 @@
 from django.shortcuts import render_to_response,RequestContext
 from django.http import HttpResponse,HttpResponseRedirect
-from vertex.models import Vertex,Edge
+from vertex.models import Vertex,Edge,FLow
+import json
+from Django.utils import timezone
+
    
 def profile(request, user_id):
 	client = None
@@ -43,5 +46,14 @@ def profile(request, user_id):
 			context_instance=RequestContext(request))
 	
 	return HttpResponse("You're looking at vertex %s." % vertex)
-
+def postflow(request,user_id):
+    flow_text = request.POST['flow_text']
+    pub_date = timezone.now()
+    newflow = Flow.objects.create(text = flow_text,pub_date = timezone.now())
+    vertex = Vertex.objects.get(user_id = user_id)
+    newflow.set_history(vertex.user_id)
+    newflow.save()
+    vertex.flow_set.add(newflow)
+def forward(request):
+    pass
 # Create your views here.

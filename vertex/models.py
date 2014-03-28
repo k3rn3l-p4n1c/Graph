@@ -1,6 +1,7 @@
 from django.db import models
 import datetime
 from django.utils import timezone
+import json
 
 class Vertex(models.Model,object):
     password = models.CharField(max_length=50)
@@ -44,6 +45,30 @@ class Edge(models.Model,object):
 	vertex_tail_id = models.CharField(max_length=100)
 	def __unicode__(self):  # Python 3: def __str__(self):
 		return self.vertex_tail_id+' ==> '+self.vertex_head_id
+    
+class Flow(models.Model): 
+    vertexes = models.ManyToManyField(Vertex)
+    text = models.CharField(max_length=300)
+    pub_date = models.DateTimeField('date published')
+    history = models.TextField(null=True)
+    def set_history(self,to_vertex):
+        jsonDec = json.decoder.JSONDecoder()
+        try:
+            history_list = jsonDec.decode(self.history)
+            history_list.append(to_vertex)
+        except TypeError:
+            history_list=list(to_vertex)
+            
+        self.history = json.dumps(history_list)
+        self.save()
+    def get_history(self):
+        jsonDec = json.decoder.JSONDecoder()
+        history_list = jsonDec.decode(self.history)
+        return history_list
+    
+    def __unicode__(self):
+        return self.text
+
 	
 # Create your models here. 
 
