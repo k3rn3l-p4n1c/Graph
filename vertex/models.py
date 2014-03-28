@@ -16,13 +16,24 @@ class Vertex(models.Model,object):
     reg_date = models.DateTimeField('date published')
     #statues = models.CharField(max_length=30)
     #varificationCode = models.models.CharField(max_length=50)
-    def get_followers(self):
+    
+    def get_followers(self): # a person => you
+    	followers_list = []
+    	for edge in Edge.objects.filter(vertex_head_id =self.user_id):
+	    	followers_list += Vertex.objects.filter(user_id = edge.vertex_tail_id)
+    	return followers_list
     	
-    def get_following(self):
-    	following_list = []
-	print user_id, Edge.objects.filter(vertex_tail_id =user_id)
-	for edge in Edge.objects.filter(vertex_tail_id =user_id):
-		following_list += Vertex.objects.filter(user_id = edge.vertex_head_id)
+    def get_following(self): # you => a person
+    	followings_list = []
+    	for edge in Edge.objects.filter(vertex_tail_id =self.user_id):
+    		followings_list += Vertex.objects.filter(user_id = edge.vertex_head_id)
+    	return followings_list
+    
+	def is_connected_to(self,vertex_id): # you => vertex_id ???
+		if len(Edge.objects.filter(vertex_tail_id = self.user_id , vertex_head_id = vertex_id)) == 0:
+			return False
+		else:
+			return True
     
     def __unicode__(self):  # Python 3: def __str__(self):
         return self.firstname+' '+self.lastname
