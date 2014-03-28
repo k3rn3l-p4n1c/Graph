@@ -1,7 +1,6 @@
 from django.shortcuts import render_to_response,RequestContext
 from django.http import HttpResponse,HttpResponseRedirect
 from vertex.models import Vertex,Edge,Flow
-import json
 from Django.utils import timezone
 
    
