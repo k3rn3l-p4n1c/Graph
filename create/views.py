@@ -60,13 +60,13 @@ def create(request):
 		## 
 		## END OF HANDLING SOME EXCEPTIONS
 		
-		new_vertex = Vertex(password = d['password'][0], firstname = d['firstname'][0], lastname = d['lastname'][0], email = d['email'][0], tel = d['tel'][0], city = d['city'][0], country = d['country'][0], sex = newsex, birthdate = newbirth, reg_date = timezone.now() )
+		new_vertex = Vertex(password = d['password'][0],user_id = uid, firstname = d['firstname'][0], lastname = d['lastname'][0], email = d['email'][0], tel = d['tel'][0], city = d['city'][0], country = d['country'][0], sex = newsex, birthdate = newbirth, reg_date = timezone.now() )
 		
 		#SendComfirmationEmail()
 		
 		new_vertex.save()
 		
-		return HttpResponseRedirect('/login/)
+		return HttpResponseRedirect('/login/')
 	
 
 # Create your views here.

@@ -16,6 +16,13 @@ class Vertex(models.Model,object):
     reg_date = models.DateTimeField('date published')
     #statues = models.CharField(max_length=30)
     #varificationCode = models.models.CharField(max_length=50)
+    def get_followers(self):
+    	
+    def get_following(self):
+    	following_list = []
+	print user_id, Edge.objects.filter(vertex_tail_id =user_id)
+	for edge in Edge.objects.filter(vertex_tail_id =user_id):
+		following_list += Vertex.objects.filter(user_id = edge.vertex_head_id)
     
     def __unicode__(self):  # Python 3: def __str__(self):
         return self.firstname+' '+self.lastname
@@ -25,7 +32,7 @@ class Edge(models.Model,object):
 	vertex_head_id = models.CharField(max_length=100)
 	vertex_tail_id = models.CharField(max_length=100)
 	def __unicode__(self):  # Python 3: def __str__(self):
-		return self.vertex_tail.user_id+' to '+self.vertex_head.user_id
+		return self.vertex_tail_id+' ==> '+self.vertex_head_id
 	
 # Create your models here. 
 

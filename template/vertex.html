@@ -3,6 +3,18 @@
 		<form>
 			You are lookin at: {{VERTEX_DETAIL}}
 			<br><a href="/home/">home</a> 
+			<br>
 		</form>
+		<form action="/vertex/{{VERTEX_ID}}/" method="POST" id="Add" style="margin-top:3%;">
+				{% csrf_token %}
+                <input type="submit" name="Add" value="Add as friend" style="float:left; margin-left:5px; font-size:15;">
+        </form>
 	</body>
+	
+	<form>
+	<br>
+	{% csrf_token %}
+	{% for vertex in FOLLOWING_VERTEX %}
+	 	<br>{{vertex}}
+	{% endfor %}
 </hmtl>
