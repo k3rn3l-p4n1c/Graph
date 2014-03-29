@@ -51,6 +51,9 @@ class Flow(models.Model):
     text = models.CharField(max_length=300)
     pub_date = models.DateTimeField('date published')
     history = models.TextField(null=True)
+    likes = models.IntegerField()
+    likers = models.TextField(null=True)
+    
     def set_history(self,to_vertex):
         jsonDec = json.decoder.JSONDecoder()
         try:
@@ -63,9 +66,31 @@ class Flow(models.Model):
         self.save()
     def get_history(self):
         jsonDec = json.decoder.JSONDecoder()
-        history_list = jsonDec.decode(self.history)
+        try:
+            history_list = jsonDec.decode(self.history)
+        except TypeError:
+            history_list = list()
         return history_list
-    
+    def like(self,user_id): 
+        jsonDec = json.decoder.JSONDecoder()
+        try:
+            likers_list = jsonDec.decode(self.likers)
+            if user_id in likers_list:
+                likers_list.remove(user_id)
+                self.likes -= 1
+            else:
+                likers_list.append(user_id)
+                self.likes += 1
+            self.likers = json.dumps(likers_list)
+            self.save()
+        except TypeError:
+            likers_list = [user_id]
+        self.likers = json.dumps(likers_list)
+        self.save()
+            
+
+        
+        
     def __unicode__(self):
         return self.text
 
