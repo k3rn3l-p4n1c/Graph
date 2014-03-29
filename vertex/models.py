@@ -47,9 +47,12 @@ class Edge(models.Model,object):
 		return self.vertex_tail_id+' ==> '+self.vertex_head_id
     
 class Flow(models.Model): 
+    
     vertexes = models.ManyToManyField(Vertex)
     text = models.CharField(max_length=300)
     pub_date = models.DateTimeField('date published')
+    owner = models.CharField(max_length=100) 
+    last_forward_date = models.DateTimeField('date published')
     history = models.TextField(null=True)
     likes = models.IntegerField()
     likers = models.TextField(null=True)
@@ -89,8 +92,6 @@ class Flow(models.Model):
         self.likers = json.dumps(likers_list)
         self.save()
             
-        
-        
         
     def __unicode__(self):
         return self.text
