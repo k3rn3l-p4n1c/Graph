@@ -85,10 +85,11 @@ class Flow(models.Model):
             self.save()
         except TypeError:
             likers_list = [user_id]
+            self.likes += 1
         self.likers = json.dumps(likers_list)
         self.save()
             
-
+        
         
         
     def __unicode__(self):
