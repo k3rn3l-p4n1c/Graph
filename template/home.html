@@ -2,7 +2,12 @@
 	<body>
 		<form>
 			Your email is: {{USER_EMAIL}}
-			<br><a href="/login/logout">logout</a> 
+			<br><a href="/">logout</a> 
+		</form>
+		<form action="/" method="POST" id="Post" style="margin-top:3%;">
+			{% csrf_token %}
+			<input type="text" size="100" name="post" placeholder="What's new?" style="font-size:16;">
+			<input type="submit" name="post" value="Share it.." style="float:right; margin-right:5px; font-size:15;">
 		</form>
 	</body>
 </hmtl>

@@ -46,6 +46,7 @@ def profile(request, user_id):
 			context_instance=RequestContext(request))
 	
 	return HttpResponse("You're looking at vertex %s." % vertex)
+	
 def postflow(request,user_id):
     flow_text = request.POST['flow_text']
     pub_date = timezone.now()
