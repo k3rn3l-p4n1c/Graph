@@ -4,6 +4,10 @@
 			You are lookin at: {{VERTEX_DETAIL}}
 			<br><a href="/home/">home</a> 
 			<br>
+			<br>Flows:
+			{% for flow in flows %}
+				<br> <ul>{{flow}}</ul>
+			{% endfor %}
 		</form>
 		<form action="/vertex/{{VERTEX_ID}}/" method="POST" id="Add" style="margin-top:3%;">
 				{% csrf_token %}
@@ -16,11 +20,12 @@
 	{% csrf_token %}
 	<br> Following:
 	{% for vertex in FOLLOWING_VERTEX %}
-	 	<br>{{vertex}}
+	 	<br><a href='/vertex/{{vertex.user_id}}/'>{{vertex}}</a>
 	{% endfor %}
 	<br>
 	<br> Followers:
 	{% for vertex in FOLLOWER_VERTEX %}
-	 	<br>{{vertex}}
+	 	<br><a href='/vertex/{{vertex.user_id}}/'>{{vertex}}</a>
 	{% endfor %}
+	</form>
 </hmtl>
