@@ -1,0 +1,16 @@
+@charset "utf-8";
+/* CSS Document */
+nav{
+	background:#f9f9f9;
+	border-bottom:solid 1px #000;
+}
+.nav{
+	border-radius:0px;
+	
+}
+.nav-pills{
+	border-radius:0px;
+}
+body{
+	background:#6498B1;
+

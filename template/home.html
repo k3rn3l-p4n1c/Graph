@@ -1,8 +1,100 @@
-<hmtl>
-	<body>
-		<form>
-			Your email is: {{USER_EMAIL}}
-			<br><a href="/login/logout">logout</a> 
-		</form>
-	</body>
-</hmtl>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Graph</title>
+
+    <!-- Bootstrap -->
+    <link href="CSS/bootstrap.min.css" rel="stylesheet">
+    <link href="CSS/homePage.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+   	<nav class="nav navbar">
+
+	<img class="navbar-brand" src="avatar" id="avatar"/>	
+    	<ul class="nav nav-pills hidden-xs">
+        	<li><a href="vertex">{{name}}</a></li>
+        	<li class="active"><a  href="/home/"><span class="glyphicon glyphicon-home"></span></a></li>
+        	<li class="dropdown">
+            <a class = "dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-bell"></span></a>
+            <ul class="dropdown-menu">
+            {%if notifi_list %}
+            {%for notifi in notifi_list%}
+            	<li><span><strong>{{notifi.title}}</strong></span><br><a href="notifi">{{notifi.text}}</a></li>
+            {%endfor%}
+            {%else%}
+            	you have any notification
+            {%endif%}
+                
+            </ul>
+            </li>            
+            
+            <li class="dropdown">
+            <a class = "dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-envelope"></span></a>
+            <ul class="dropdown-menu">
+            {%if msg_list %}
+            {%for msg in msg_list%}
+            	<li><a href="notifi">from : {{msg.from}}</a></li>
+            {%endfor%}
+            {%else%}
+            	you have any message
+            {%endif%}
+                
+            </ul>
+            </li>
+            <li class="dropdown">
+            <a class = "dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-link"></span></a>
+            <ul class="dropdown-menu">
+            {%if req_list %}
+            {%for req in req_list%}
+            	<li><a href="notifi">from : {{req.from}}</a></li>
+            {%endfor%}
+            {%else%}
+            	you have any request
+            {%endif%}
+                
+            </ul>
+            </li>            
+            
+            
+            
+            <!--log in form-->
+            {%if not_login%}
+            <li >
+            <a class = "dropdown-toggle" data-toggle="dropdown" href="/login/">ورود</span></a>
+           
+            </li>   
+            {%endif%}
+            <!--end-->
+             <li class="search nav navbar-right">
+                <ul class="nav nav-search">
+                    <li>
+                        <form class="navbar-form hidden-xs navbar-left" role="search">
+                        <div class="form-group">
+                            <input type="text" placeholder="جستجو ..." class="form-control">
+                        </div>
+                       
+                        <button type="submit" class="btn btn-defualt" id="search" ><span class="glyphicon glyphicon-search"></span></button>
+                        
+                            
+                        </form>
+                    </li>
+                </ul>            		
+            </li>
+     </ul>
+    </nav>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>
