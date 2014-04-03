@@ -6,7 +6,7 @@ def firstpage(request):
 		eml = request.COOKIES['email']
 		pwd = request.COOKIES['password']
 	except :
-		return HttpResponseRedirect('/login/')
+		return HttpResponseRedirect('/home/')
 	print 'Graph/Graph/views.py: usr:',eml,'  pwd: ',pwd
 	return HttpResponseRedirect('/home/')
 
