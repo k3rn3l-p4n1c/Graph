@@ -15,4 +15,5 @@ urlpatterns = patterns('',
 	url(r'^create/', include('create.urls')),
 	url(r'^vertex/', include('vertex.urls')),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^chat/', include('chat.urls')),   
 )
