@@ -69,8 +69,8 @@
             
             <!--log in form-->
             {%if not_login%}
-            <li >
-            <a class = "dropdown-toggle" data-toggle="dropdown" href="/login/">ورود</span></a>
+            <li>
+            <a class = "dropdown-toggle" data-toggle="dropdown" href="/login/">Login</span></a>
            
             </li>   
             {%endif%}
@@ -80,7 +80,7 @@
                     <li>
                         <form class="navbar-form hidden-xs navbar-left" role="search">
                         <div class="form-group">
-                            <input type="text" placeholder="جستجو ..." class="form-control">
+                            <input type="text" placeholder="search ..." class="form-control">
                         </div>
                        
                         <button type="submit" class="btn btn-defualt" id="search" ><span class="glyphicon glyphicon-search"></span></button>
@@ -92,6 +92,43 @@
             </li>
      </ul>
     </nav>
+    <div class="container-fluid" id="total">
+    	<div class="col-xs-9" id="feeds">
+        {%if post_list %}
+        	<div class="feed-holder">
+            	{%for post in post_list%}
+                	<section class="post">
+                    <!--<div class="img-circle">
+                    	<img class="img-circle who" src="IMG/404.png">
+                       </div>-->
+                    	<article class="post">
+                        <div class="img-circle imgholder">
+                    	<img class="img-circle who" src="IMG/1146549_1418520071705928_1838631997_n.jpg">
+                       </div>
+                        	<h3>{{post.title}}</h3>
+                            <p>{{post.text}}</p>
+                        </article>
+                    </section>
+                {%endfor%}
+            </div>
+        {%else%}
+        	There is any Post
+        {%endif%}
+        </div>
+        <div class="col-xs-3" id="chat">
+        <div class="chatbar">
+        {%if friend_list%}
+        	{%for friend in friend-list%}
+            <div class="friendholder">
+            	<img class="img-circle" src="{{friend.avatar_url}}">
+                <strong>{{freind.name}}</strong>
+            </div>
+            {%enfor%}
+        {%else%}
+        {%endif%}
+        </div>
+        </div>
+    </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
