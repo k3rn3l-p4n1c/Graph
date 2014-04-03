@@ -45,6 +45,7 @@ article.post{
 	box-shadow:5px 5px 0px #006666;
 }
 .chatbar{
+	width:20%;
 	position:fixed;
 	height:100%;
 	background:#f9f9f9;
@@ -62,4 +63,18 @@ div.friendholder{
 div.friendholder img{
 	height:28px;
 	width:28px;
+}
+.message article.other_msg{
+	background:#fff;
+	padding:5px;
+	border:solid 1px #ccc;
+	border-radius:5px;
+	color:#454545;
+}
+.my_msg{
+	background:#fff;
+	padding:5px;
+	border:solid 1px #ccc;
+	border-radius:5px;
+	color:#06F;
 }
