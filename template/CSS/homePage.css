@@ -18,20 +18,21 @@ div#feeds{
 	text-align:center;
 }
 section.post{
+	color:#454545;
 	text-align:left;
 	background:none;
 	padding:5px;
 }
-div.imgholder{
-	width:75px;
-	height:75px;
+div.detail{
+	
 	display:inline-block;
 	overflow:hidden;
-	text-align:center;
-	background:#6498B1;
+	color:#aaa;
+	font-size:0.8em;
+	
 }
 img.who{
-	
+	background:#6498B1;
 	width:75px;
 	height:75px;
 }
@@ -41,12 +42,15 @@ article.post{
 	margin-top:15px;
 	padding:25px;
 	border-radius :10px;
-	box-shadow:2px 2px 0px #525252;
+	box-shadow:5px 5px 0px #006666;
 }
 .chatbar{
 	position:fixed;
 	height:100%;
 	background:#f9f9f9;
+	border-radius: 15px 15px 0px 0px ;
+	padding:15px;
+	box-shadow:5px 5px 0px #006666;
 }
 div.friendholder{
 	background:#e9e9e9;
