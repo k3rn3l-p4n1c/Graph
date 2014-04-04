@@ -5,7 +5,7 @@ from time import sleep
 from vertex.models import Vertex
 
 def home(request):
-	print request.COOKIES
+	print 'POST:',request.POST
 	try:
 		eml = request.COOKIES[ 'email' ]
 		pwd = request.COOKIES[ 'password' ]

@@ -42,7 +42,11 @@ def profile(request, user_id):
 {"VERTEX_DETAIL":vertex.firstname+' '+vertex.lastname,"VERTEX_ID":user_id,"FOLLOWING_VERTEX":vertex.get_following() , "FOLLOWER_VERTEX":vertex.get_followers(),"flows":flows, },
 context_instance=RequestContext(request))	
 	return HttpResponse("You're looking at vertex %s." % vertex)
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> cf7935267a83bc2b3f196dd2b0b1693faec962da
 def postflow(request,user_id):
     flow_text = request.POST['flow_text']
     pub_date = timezone.now()
