@@ -78,3 +78,33 @@ div.friendholder img{
 	border-radius:5px;
 	color:#06F;
 }
+footer{
+	text-align:center;
+	color:#fff;
+	opacity:0.6;
+	border-top:solid 1px #fff;
+}
+div#actions ul{
+	list-style:none;
+	border-top:solid 1px #aaa;
+	padding:0px;
+}
+div#actions ul li {
+	display:inline-block;
+	margin-left:10px;
+}
+.comment{
+	border:none;
+}
+.row1{
+	background:#e3e3e3;
+	color:#454545;
+}
+.row2{
+	background:#fff;
+	color:#454545;
+}
+.row1 , .row2 {
+	min-height:35px;
+	border:solid 1px #ccc;
+}
