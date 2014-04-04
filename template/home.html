@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Graph</title>
-
+    <link rel="icon" href="IMG/logo.png">
     <!-- Bootstrap -->
     <link href="CSS/bootstrap.min.css" rel="stylesheet">
     <link href="CSS/homePage.css" rel="stylesheet">
@@ -19,9 +19,10 @@
   </head>
   <body>
    	<nav class="nav navbar">
-
-	<img class="navbar-brand" src="avatar" id="avatar"/>	
+	
     	<ul class="nav nav-pills hidden-xs">
+        	<li class="navbar-brand"><img src="IMG/logo.png"></li>
+            <li class="navbar-brand"><img class="img-circle" src="avatar" id="avatar"/></li>
         	<li><a href="vertex">{{name}}</a></li>
         	<li class="active"><a  href="/home/"><span class="glyphicon glyphicon-home"></span></a></li>
         	<li class="dropdown">
@@ -113,6 +114,7 @@
                             	<ul>
                                 	<li><a href="{{accept |add '1'}}"><span class="glyphicon glyphicon-thumbs-up"><b class="badge">{{accept}}</b></span></a></li>
                                     <li><a href="{{ignore |add '1'}}"><span class="glyphicon glyphicon-thumbs-down"><b class="badge">{{ignore}}</b></span></a></li>
+                                     <li><a href="{{flow |add '1'}}"><span class="glyphicon glyphicon-new-window"><b class="badge">{{flow}}</b></span></a></li>
                                 </ul>
                                 <ul class="comments">
                                 	{%for cm in cm_list%}

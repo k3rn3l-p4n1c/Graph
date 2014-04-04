@@ -93,7 +93,7 @@ div#actions ul li {
 	display:inline-block;
 	margin-left:10px;
 }
-.comment{
+.comments{
 	border:none;
 }
 .row1{
@@ -107,4 +107,14 @@ div#actions ul li {
 .row1 , .row2 {
 	min-height:35px;
 	border:solid 1px #ccc;
+}
+.navbar-brand img{
+	width:35px;
+	height:35px;
+	padding:0px;
+	margin:0px;
+}
+.navbar-brand{
+	padding:0px;
+	margin:0px;
 }
