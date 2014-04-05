@@ -63,33 +63,33 @@ def postflow(request,user_id):
     #gotta add others too
     
     
-def forward(request,user_id):
-    flow_text = request.POST['flow_text']
-    forward_to = request.POST['forward_to']
-    flow = Flow.objects.get(text = flow_text)
-    flow.last_forward_date = timezone.now()
-    flow.save()
-    vertex = Vertex.objects.get(user_id = user_id)
-    if forward_to == "all":
-        followers_list = vertex.get_followers()
-        for followers in followers_list:
-            followers.flow_set.add(flow)
-            followers.save()
-    else:
-        forward_list = [] #I'll change it later with the html
-        for index,followers in enumerate(forward_list):
-            follower = Vertex.objects.get(user_id = followers)
-            follower.flow_set.add(flow)
-            follower.save()
-            
+def forward(request,user_id,flow_id):
+    #flow_text = request.POST['flow_text']
+    #forward_to = request.POST['forward_to']
+	flow = Flow.objects.get(id = flow_id)
+	flow.last_forward_date = timezone.now()
+	flow.save()
+	vertex = Vertex.objects.get(user_id = user_id)
+	forward_to = "all"
+	if forward_to == "all":
+		followers_list = vertex.get_followers()
+		for followers in followers_list:
+			followers.flow_set.add(flow)
+			followers.save()
+	else:
+		forward_list = [] #I'll change it later with the html
+		for index,followers in enumerate(forward_list):
+			follower = Vertex.objects.get(user_id = followers)
+			follower.flow_set.add(flow)
+			follower.save()
             
         
     
 def like_flow(request,liker_id):
-    flow_text = request.POST['flow_text']
-    flow = Flow.objects.get(text = flow_text)
-    flow.like(liker_id)
-    flow.save()
+	flow_text = request.POST['flow_text']
+	flow = Flow.objects.get(text = flow_text)
+	flow.like(liker_id)
+	flow.save()
     
     
 # Create your views here.
