@@ -36,17 +36,17 @@ def profile(request, user_id):
 	vertex = Vertex.objects.get(user_id = user_id)
 	flows = vertex.flow_set.order_by('-last_forward_date')[:5]
 	if me:
-		return render_to_response('vertex.html',{"VERTEX_DETAIL":"yourself","VERTEX_ID":user_id, "FOLLOWING_VERTEX":vertex.get_following(), "FOLLOWER_VERTEX":vertex.get_followers(),"flows":flows,},context_instance=RequestContext(request))
+		return render_to_response('index.html',{"VERTEX_DETAIL":"yourself","VERTEX_ID":user_id, "FOLLOWING_VERTEX":vertex.get_following(), "FOLLOWER_VERTEX":vertex.get_followers(),"flows":flows,},context_instance=RequestContext(request))
 	else:
-		return render_to_response('vertex.html',
+		return render_to_response('index.html',
 {"VERTEX_DETAIL":vertex.firstname+' '+vertex.lastname,"VERTEX_ID":user_id,"FOLLOWING_VERTEX":vertex.get_following() , "FOLLOWER_VERTEX":vertex.get_followers(),"flows":flows, },
 context_instance=RequestContext(request))	
 	return HttpResponse("You're looking at vertex %s." % vertex)
-<<<<<<< HEAD
+#"""<<<<<<< HEAD
 
-=======
+#=======
 	
->>>>>>> cf7935267a83bc2b3f196dd2b0b1693faec962da
+#>>>>>>> cf7935267a83bc2b3f196dd2b0b1693faec962da"""
 def postflow(request,user_id):
     flow_text = request.POST['flow_text']
     pub_date = timezone.now()
