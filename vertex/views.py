@@ -55,6 +55,11 @@ def postflow(request,user_id):
     newflow.set_history(vertex.user_id)
     newflow.save()
     vertex.flow_set.add(newflow)
+    followers_list = vertex.get_followers()
+    for followers in followers_list:
+    	followers.flow_set.add(newflow)
+    	followers.save()
+        	
     #gotta add others too
     
     
