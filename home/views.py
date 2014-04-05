@@ -3,6 +3,7 @@ from django.http import HttpResponse,HttpResponseRedirect
 from urllib import urlencode
 from time import sleep
 from vertex.models import Vertex
+from django.core.exceptions import ObjectDoesNotExist
 
 def home(request):
 	print 'POST:',request.POST
@@ -17,7 +18,7 @@ def home(request):
 		client = Vertex.objects.get(email = eml)
 		if client.password != pwd:
 			raise LookupError()
-	except LookupError:
+	except Vertex.DoesNotExist:
 		sleep(3)
 		d = {'server_message':"Wrong username or password."}
 		query_str = urlencode(d)
