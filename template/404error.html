@@ -2,13 +2,15 @@
 <!--[if lt IE 7]> <html class="ie6 oldie"> <![endif]-->
 <!--[if IE 7]>    <html class="ie7 oldie"> <![endif]-->
 <!--[if IE 8]>    <html class="ie8 oldie"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="">
+<!--[if gt IE 8]><!--> 
+{%load static%}
+<html class="">
 <!--<![endif]-->
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>not found!</title>
-<link href="boilerplate.css" rel="stylesheet" type="text/css">
+<link href="{%static 'template/boilerplate.css'%}" rel="stylesheet" type="text/css">
 
 <!-- 
 To learn more about the conditional comments around the html tags at the top of the file:
@@ -23,13 +25,13 @@ Do the following if you're using your customized build of modernizr (http://www.
 <!--[if lt IE 9]>
 <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
-<script src="respond.min.js"></script>
+<script src="{%static 'template/respond.min.js'%}"></script>
 </head>
 <body>
 	<div class="gridContainer clearfix">
     
-		<div id="div1" class="fluid"><img src="IMG/404.png"><h2>404</h2><h3>page not found</h3></div>
+		<div id="div1" class="fluid"><img src="{%static 'template/IMG/404.png'%}"><h2>404</h2><h3>page not found</h3></div>
 	</div>
 </body>
-<link href="CSS/404.css" rel="stylesheet" type="text/css">
+<link href="{%static 'template/CSS/404.css' %}" rel="stylesheet" type="text/css">
 </html>

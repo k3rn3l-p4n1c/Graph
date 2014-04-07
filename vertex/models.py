@@ -56,7 +56,9 @@ class Flow(models.Model):
     history = models.TextField(null=True)
     likes = models.IntegerField()
     likers = models.TextField(null=True)
-    
+    def get_date(self):
+        return str(self.pub_date.date())
+
     def set_history(self,to_vertex):
         jsonDec = json.decoder.JSONDecoder()
         try:

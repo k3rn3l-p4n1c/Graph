@@ -1,16 +1,18 @@
 
-<!doctype html>
+<!DOCTYPE HTML>
 <!--[if lt IE 7]> <html class="ie6 oldie"> <![endif]-->
 <!--[if IE 7]>    <html class="ie7 oldie"> <![endif]-->
 <!--[if IE 8]>    <html class="ie8 oldie"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="">
+<!--[if gt IE 8]><!--> 
+{% load static %}
+<html>
 <!--<![endif]-->
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Untitled Document</title>
-<link href="boilerplate.css" rel="stylesheet" type="text/css">
-<link href="CSS/create.css" rel="stylesheet" type="text/css">
+<title>Create a vertex</title>
+<link href="{%static 'template/boilerplate.css'%}" rel="stylesheet" type="text/css">
+<link href="{%static 'template/CSS/create.css'%}" rel="stylesheet" type="text/css">
 <!-- 
 To learn more about the conditional comments around the html tags at the top of the file:
 paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
@@ -24,7 +26,7 @@ Do the following if you're using your customized build of modernizr (http://www.
 <!--[if lt IE 9]>
 <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
-<script src="respond.min.js"></script>
+<script src="{%static 'template/respond.min.js'%}"></script>
 </head>
 <body>
 	<div class="gridContainer clearfix">
@@ -56,37 +58,9 @@ Do the following if you're using your customized build of modernizr (http://www.
                     </select>
                     <select id="day" name="day">
                     <option value="0" selected"1">Day</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                    <option value="13">13</option>
-                    <option value="14">14</option>
-                    <option value="15">15</option>
-                    <option value="16">16</option>
-                    <option value="17">17</option>
-                    <option value="18">18</option>
-                    <option value="19">19</option>
-                    <option value="20">20</option>
-                    <option value="21">21</option>
-                    <option value="22">22</option>
-                    <option value="23">23</option>
-                    <option value="24">24</option>
-                    <option value="25">25</option>
-                    <option value="26">26</option>
-                    <option value="27">27</option>
-                    <option value="28">28</option>
-                    <option value="29">29</option>
-                    <option value="30">30</option>
-                    <option value="31">31</option>
+                    {%for i in range(1,32)%}
+                    <option value="i">i</option>
+                    {%endfor%}
                     </select>
                     <br>
                     Avatar <input type="file" name="avatar">

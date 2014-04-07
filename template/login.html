@@ -1,16 +1,18 @@
+
 <!doctype html>
 <!--[if lt IE 7]> <html class="ie6 oldie"> <![endif]-->
 <!--[if IE 7]>    <html class="ie7 oldie"> <![endif]-->
 <!--[if IE 8]>    <html class="ie8 oldie"> <![endif]-->
 <!--[if gt IE 8]><!-->
+{%load static%}
 <html class="">
 <!--<![endif]-->
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Graph</title>
-<link href="boilerplate.css" rel="stylesheet" type="text/css">
-<link href="CSS/FirstPageStyle.css" rel="stylesheet" type="text/css">
+<link href="{%static 'template/boilerplate.css'%}" rel="stylesheet" type="text/css">
+<link href="{%static 'template/CSS/FirstPageStyle.css'%}" rel="stylesheet" type="text/css">
 <!-- 
 To learn more about the conditional comments around the html tags at the top of the file:
 paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
@@ -24,11 +26,11 @@ Do the following if you're using your customized build of modernizr (http://www.
 <!--[if lt IE 9]>
 <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
-<script src="respond.min.js"></script>
+<script src="{%static 'template/respond.min.js'%}"></script>
 </head>
 <body> 
 <div class="gridContainer clearfix ">
-  <div id="imageContainer"  class="chromeframe fluid"><img src="IMG/banner.png">
+  <div id="imageContainer"  class="chromeframe fluid"><img src="{%static 'template/IMG/banner.png'%}">
   <div class="sign-holder">
   <a id="signUP" class="btn">Sign UP</a>
   <a id="signIN" class="btn">Sign IN</a>
