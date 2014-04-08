@@ -24,7 +24,7 @@
    	<nav class="navbar navbar-inverse">
 
 	<img class="navbar-brand" src="{%static 'style/images/default_avatar.png'%}" id="avatar"/>	
-    	<ul class="nav nav-pills hidden-xs">
+    	<ul class="nav nav-pills ">
         	<li><a href="">{{VERTEX_DETAIL}}</a></li>
         	<li class="active"><a  href="/home/"><span class="glyphicon glyphicon-home"></span></a></li>
         	<li class="dropdown">
@@ -71,9 +71,9 @@
             
             
             <!--log in form-->
-            {%if not_login%}
+            {%if not login%}
             <li>
-            <a class = "dropdown-toggle" data-toggle="dropdown" href="/login/">Login</span></a>
+            <a href="/login/"><span>Login</span></a>
            
             </li>   
             {%endif%}
@@ -171,6 +171,7 @@
     <script src="{%static 'template/js/bootstrap.min.js'%}"></script>
     <script>
 		$(window).load(function(){
+				$('span.load').fadeTo(600,1);
 				$('.fill').animate({width:'20%'},5000,function(){});
 				$('.load').delay(5000).fadeOut(600);
 				

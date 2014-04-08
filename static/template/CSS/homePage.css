@@ -97,6 +97,7 @@ div.load span{
 
 
 span.load{
+	display : none;
 	animation : fadein 6s infinite;
 	-webkit-animation : fadein 6s infinite;
 	-moz-animation : fadein 6s infinite;
@@ -129,13 +130,10 @@ div.about {
 	color:#fff;
 }
 .avatar-large{
-	width:20%;
+	width:auto;
+	height:350px;
 	border-radius:60%;
-	position:absolute;
-	left:40%;
-	right:40%;
-	top:20%;
-	
+	margin:auto;
 	
 }
 .avatar-holder{
