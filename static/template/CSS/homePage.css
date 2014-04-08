@@ -62,9 +62,9 @@ div.load img.progress{
 }
 div.load span{
 	margin:auto;
-	width:20%;
-	left:40%;
-	right:40%;
+	width:50%;
+	left:25%;
+	right:25%;
 	position:absolute;
 	top:35%;
 	color:#454545;
@@ -114,7 +114,7 @@ span.load{
 	top:45%;
 	left:20%;
 	right:20%;
-	background:#454545;
+	background:#525252;
 	border-radius:5px;
 }
 div.more {

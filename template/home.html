@@ -136,7 +136,7 @@
                             <p>{{flow.text}}</p>
                             <div id="actions">
                             	<ul>
-                                	<li><a style="cursor:pointer"><span class="glyphicon glyphicon-thumbs-up"><b class="badge">{{flow.likes}}</b></span></a></li>
+                                	<li><a id="like"  style="cursor:pointer"><span class="glyphicon glyphicon-thumbs-up"><b class="badge">{{flow.likes}}</b></span></a></li>
                                     <li id="comment"><a style="cursor:pointer"><span class="glyphicon glyphicon-comment"><b class="badge">{{flow.comment|default:'0'}}</b></span></a></li>
                                     <li id="comment" style="float:right"><a style="cursor:pointer"><span class="glyphicon glyphicon-new-window"></span></a></li>
                                     
@@ -169,43 +169,7 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="{%static 'template/js/blur.min.js'%}"></script>
     <script src="{%static 'template/js/bootstrap.min.js'%}"></script>
-    <script>
-		$(window).load(function(){
-				$('span.load').fadeTo(600,1);
-				$('.fill').animate({width:'20%'},5000,function(){});
-				$('.load').delay(5000).fadeOut(600);
-				
-				
-			});
-		$(document).ready( function() {
-			$('#bg').blurjs({
-				source: 'div.avatar-holder',
-				radius: 30,
-				overlay: 'rgba(0, 0, 0, .2)'
-			});
-			$('a#more').on('click',function(){
-				 if ($('div.more').is(':visible')){
-					 $('a#more').text("More about {{VERTEX_DETAIL|title}}");
-				 }
-				 else {
-					 $('a#more').text("Less about {{VERTEX_DETAIL|title}}");
-				 }
-					$('div.more').slideToggle(600);
-				});
-			if ($(window).width() < 1000){
-				$('div.post').css('float','none');
-			}
-			$('.navbar').on('mouseenter',function(){
-				$(this).fadeTo(600,1);
-				});
-			
-			$('.navbar').on('mouseleave',function(){
-				$(this).fadeTo(600,0.6);
-				});	
-			
-		});
-		
-	</script>
+    <script src="{%static 'template/js/custom.js'%}"></script>
     </div>
   </body>
 </html>
