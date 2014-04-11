@@ -1,18 +1,17 @@
-
 <!doctype html>
 <!--[if lt IE 7]> <html class="ie6 oldie"> <![endif]-->
 <!--[if IE 7]>    <html class="ie7 oldie"> <![endif]-->
 <!--[if IE 8]>    <html class="ie8 oldie"> <![endif]-->
 <!--[if gt IE 8]><!-->
-
+{% load static %}
 <html class="">
 <!--<![endif]-->
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Graph</title>
-<link href="../static/template/boilerplate.css" rel="stylesheet" type="text/css">
-<link href="../static/template/CSS/FirstPageStyle.css" rel="stylesheet" type="text/css">
+<title>{%block title%}Graph{%endblock%}</title>
+<link href="{% static 'template/boilerplate.css'%}" rel="stylesheet" type="text/css">
+<link href="{%static 'template/CSS/login.css'%}" rel="stylesheet" type="text/css">
 <!-- 
 To learn more about the conditional comments around the html tags at the top of the file:
 paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
@@ -26,77 +25,24 @@ Do the following if you're using your customized build of modernizr (http://www.
 <!--[if lt IE 9]>
 <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
+<script src="{% static 'template/respond.min.js'%}"></script>
 </head>
-
-<body> 
-<div class="load">
-<h3>welcome to </h3>
-<h1>GRAPH</h1>
-</div>
-<div class="users">
-<div class="user" id="first">
-<h1>GRPAH</h1>
-<h3>The news social network</h3>
-<div class="buttons">
-<a href="/login/" class="btn"><span>Sign in</span></a>
-<a href="/create/" class="btn" id="signup"><span>Sign up</span></a>
-</div>
-</div>
-<div class="user" id="second">
-<h2>What is Graph ? </h2>
-<p>Graph is a social network that let you to share your news with your friends </p>
-<p> please see this video </p>
-<div id="videocontainer" class="videocontainer">
-
-           		<video controls>
-                	<source src="../static/template/video/graph.mp4" type="video/mp4">
-
-                </video>
-
-           </div>
-</div>
-<div class="user" id="third">
-<h2>More About Graph</h2>
-<div class="sub_user first">
-<div class="joint">
-	<p>To use <strong>Graph</strong> you must first sign up (we tell it<em> creating a vertex</em>)
-    and after that search in <em>graph</em> an find your <strong>friends</strong> or news sources
-    and in this way you add other's vertex to your vertex and create a friendship with them and <strong>extend</strong> your <em>graph</em></p>
-</div>
-<img src="../static/template/IMG/graph.gif">
-<div class="flow">
-<p>You can share your news with your friends We tell it <strong>Flow</strong></p>
-<img class="flow" src="../static/template/IMG/flow.png">
-</div>
-</div>
-</div>
-<div class="user" id="frth">
-<h1><em>Create</em> a VERTEX <em>now</em> and Enjoy with graph</h1>
-<br>
-<br>
-<br>
-<hr>
-<br>
-<div>
-<h3>Powered  By Django 1.6.2</h3>
-<span>Developers : Bardia Heydarinejad , Arian Hosseini , Soheil khodayari , Hossein Khalili</span>
-<br>
-<span>Start at 2014 in <a target="new" href="http://iust.ac.ir"><em>Iran University of Science and Technology</em></a></span>
-<br>
-<br>
-<br>
-<a target = "new"href="https://github.com/bardia-heydarinejad/graph">Fork on git</a>
-</div>
-</div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script>
-	$(window).load(function(){
-		$('div.load h3').fadeTo(600,1);
-		$('div.load h1').delay(600).fadeTo(600,1);
-		$('div.load').delay(6000).fadeTo(600,0);
-		$('.users').delay(6300).fadeTo(600,1);
-		});
-</script>
-</div>
+<body>
+    <div >		
+     <fieldset>
+        <form action="/login/login" method="POST" id="Sign Up!" style="margin-top:3%;">
+		        {% csrf_token %}
+		        <em>{{SERVER_MESSAGE}}</em>
+                <legend style="font-size:18; color:#000000 ;"><b>Login</b></legend>
+                <input type="email" size="25" name="email" placeholder="Email" style="font-size:16;"><br>
+                <input type="password" size="25" name="password" placeholder="Password" style="font-size:16;"><br>
+                <input type="submit" name="Login" value="Connect to Graph" class="btn">
+                <p style="color:#FF0000; font-size:15;">{{ message }}</p>
+                Not joint to Graph? Click 
+                <a href="/create/">Here</a> .
+        </form>
+     </fieldset>
+    </div>
 </body>
+
 </html>
