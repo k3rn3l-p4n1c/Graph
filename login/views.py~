@@ -10,7 +10,7 @@ def view(request):
 	msg = ""
 	if query:
 		msg = cgi.parse_qs(query)['server_message'][0]
-	return render_to_response('login.html',
+	return render_to_response('firstpage.html',
 		{"SERVER_MESSAGE":msg},
 		context_instance=RequestContext(request))
 
