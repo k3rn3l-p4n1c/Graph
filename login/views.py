@@ -41,5 +41,21 @@ def logout(request):
 	response.delete_cookie('email')
 	response.delete_cookie('password')
 	return response
+
+def authDetail(request):
+	try:
+		eml = request.COOKIES[ 'email' ]
+		pwd = request.COOKIES[ 'password' ]
+	except:
+		return [False,]
+	try:
+		client = Vertex.objects.get(email = eml)
+		if client.password != pwd:
+			raise LookupError()
+	except Vertex.DoesNotExist:
+		return [False,"WRONG_USR"]
+	except LookupError:
+		return [False,"WRONG_PWD"]
+	return [True,client]
     
 # Create your views here.

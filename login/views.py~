@@ -10,7 +10,7 @@ def view(request):
 	msg = ""
 	if query:
 		msg = cgi.parse_qs(query)['server_message'][0]
-	return render_to_response('firstpage.html',
+	return render_to_response('login.html',
 		{"SERVER_MESSAGE":msg},
 		context_instance=RequestContext(request))
 
@@ -41,5 +41,21 @@ def logout(request):
 	response.delete_cookie('email')
 	response.delete_cookie('password')
 	return response
+
+def authDetail(request):
+	try:
+		eml = request.COOKIES[ 'email' ]
+		pwd = request.COOKIES[ 'password' ]
+	except:
+		return [False,]
+	try:
+		client = Vertex.objects.get(email = eml)
+		if client.password != pwd:
+			raise LookupError()
+	except Vertex.DoesNotExist:
+		return [False,"WRONG_USR"]
+	except LookupError:
+		return [False,"WRONG_PWD"]
+	return [True,]
     
 # Create your views here.
