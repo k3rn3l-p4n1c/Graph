@@ -111,16 +111,9 @@
                         	<div class="avatar-holder"><img class="avatar-large" src="{%static 'style/images/default_avatar.png'%}"/></div>
                         </div>
                         <article class="about">
-                        	<strong>{{VERTEX_DETAIL|title}}</strong><br>
-                            <span>{{Gender|default:'he/she'|title}} was born at {{BIRTHDAY|default:'BIRTHDAY'}}{%if country%}in{{country}}{%endif%}{%if city%}{{city}}{%endif%}</span>
-                            <br>
-                            <a id="more" style="cursor:pointer">More about {{VERTEX_DETAIL|title}}</a>
-                            <div class="more">
-                            	<span>COUNTRY : {{COUNTRY|default:'country'}}</span><br>
-                                <span>CITY : {{CITY|default:'city'}}</span><br>
-                                <span>Tell : {{phone|default:'000-000000'|phone2numeric}}</span><br>
-                                <span>Email : {{email|default:'email@example.com'}}</span><br>
-                                
+                        	<textarea class="post" placeholder="Type Your news here ..." name="text"></textarea>
+                            <div class="postbuttons">
+                            	<button role="button" class="postbtn"><span>POST</span></button>
                             </div>
                         </article>
                     </section>

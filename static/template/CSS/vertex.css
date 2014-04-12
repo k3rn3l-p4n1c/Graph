@@ -1,4 +1,5 @@
 @charset "utf-8";
+@charset "utf-8";
 /* CSS Document */
 @media (min-width : 768px){
 	div.flows{
@@ -124,48 +125,20 @@ div.more {
 	display:none;
 }
 div.about {
+	
 	margin:auto;
-	min-height:45px;
+	min-height:450px;
 	background: url(../IMG/tile.png);
 	opacity:0.85;
 	border:solid 1px #ccc;
 	color:#fff;
-	width:50%;
-}
-textarea.post{
-	width:99%;
-	opacity:0.5;
-	margin-top:5px;
-	border:none;
-	border-radius:2px;
-	resize:none;
-	color:#454545;
-}
-textarea.post:hover,textarea.post:focus{
-	opacity:1;
-	
-}
-textarea:focus{
-	height:150px;
-}
-button.postbtn:hover{
-	background:#e3e3e3;
-	color:#333;
-}
-button.postbtn{
-	width:50%;
-	background:#333;
-	border:solid 1px #e3e3e3;
-	padding:5px;
-	margin-bottom:5px;
-	border-radius:5px;
 }
 .avatar-large{
-	display:none;
+	width:auto;
+	height:350px;
+	border-radius:60%;
+	margin:auto;
 	
-}
-.images{
-	display:none;
 }
 .avatar-holder{
 	height:350px;
@@ -258,3 +231,5 @@ div#actions ul li {
 	min-height:35px;
 	border:solid 1px #ccc;
 }
+/* CSS Document */
+

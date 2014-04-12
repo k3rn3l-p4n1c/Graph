@@ -1,8 +1,8 @@
 $(window).load(function(){
 			
 		$('span.load').fadeTo(600,1);
-		$('.fill').animate({width:'50%'},5000,function(){});
-		$('.load').delay(5000).fadeOut(600);
+		$('.fill').animate({width:'50%'},2000,function(){});
+		$('.load').delay(2000).fadeOut(600);
 				
 				
 			});
