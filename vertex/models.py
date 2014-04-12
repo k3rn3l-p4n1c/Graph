@@ -35,6 +35,8 @@ class Vertex(models.Model,object):
 			return False
 		else:
 			return True
+    def age(self):
+    	return datetime.datetime.now().year - self.birthdate.year
     
     def __unicode__(self):  # Python 3: def __str__(self):
         return self.firstname+' '+self.lastname

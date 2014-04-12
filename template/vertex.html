@@ -1,31 +1,193 @@
-<hmtl>
-	<body>
-		<form>
-			You are lookin at: {{VERTEX_DETAIL}}
-			<br><a href="/home/">home</a> 
-			<br>
-			<br>Flows:
-			{% for flow in flows %}
-				<br> <ul>{{flow}}</ul>
-			{% endfor %}
-		</form>
-		<form action="/vertex/{{VERTEX_ID}}/" method="POST" id="Add" style="margin-top:3%;">
-				{% csrf_token %}
-                <input type="submit" name="Follow" value="Connect to" style="float:left; margin-left:5px; font-size:15;">
-        </form>
-	</body>
-	
-	<form>
-	<br>
-	{% csrf_token %}
-	<br> Following:
-	{% for vertex in FOLLOWING_VERTEX %}
-	 	<br><a href='/vertex/{{vertex.user_id}}/'>{{vertex}}</a>
-	{% endfor %}
-	<br>
-	<br> Followers:
-	{% for vertex in FOLLOWER_VERTEX %}
-	 	<br><a href='/vertex/{{vertex.user_id}}/'>{{vertex}}</a>
-	{% endfor %}
-	</form>
-</hmtl>
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Graph</title>
+
+    <!-- Bootstrap -->
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body >
+  <div class="load"><span class="load">{{VERTEX_DETAIL|title}}</span><!--<img class="progress" src="{%static 'template/IMG/progressbar.png'%}">
+  <img src="{%static 'template/IMG/progress_fill.png'%}" class="fill">-->
+  <div class="fill"></div>
+  </div>
+  <div id="bg">
+   	<nav class="navbar navbar-inverse">
+
+	<img class="navbar-brand" src="{%static 'style/images/default_avatar.png'%}" id="avatar"/>	
+    	<ul class="nav nav-pills ">
+        	<li><a href="">{{VERTEX_DETAIL}}</a></li>
+        	<li class="active"><a  href="/home/"><span class="glyphicon glyphicon-home"></span></a></li>
+        	<li class="dropdown">
+            <a class = "dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-bell"></span></a>
+            <ul class="dropdown-menu">
+            {%if notifi_list %}
+            {%for notifi in notifi_list%}
+            	<li><span><strong>{{notifi.title}}</strong></span><br><a href="notifi">{{notifi.text}}</a></li>
+            {%endfor%}
+            {%else%}
+            	<li>you have no notification</li>
+            {%endif%}
+                
+            </ul>
+            </li>            
+            
+            <li class="dropdown">
+            <a class = "dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-envelope"></span></a>
+            <ul class="dropdown-menu">
+            {%if msg_list %}
+            {%for msg in msg_list%}
+            	<li><a href="notifi">from : {{msg.from}}</a></li>
+            {%endfor%}
+            {%else%}
+            	you have no message
+            {%endif%}
+                
+            </ul>
+            </li>
+            <li class="dropdown">
+            <a class = "dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-link"></span></a>
+            <ul class="dropdown-menu">
+            {%if req_list %}
+            {%for req in req_list%}
+            	<li><a href="notifi">from : {{req.from}}</a></li>
+            {%endfor%}
+            {%else%}
+            	you have no request
+            {%endif%}
+                
+            </ul>
+            </li>            
+            
+            
+            
+            <!--log in form-->
+            {%if not login%}
+            <li>
+            <a href="/login/"><span>Login</span></a>
+           
+            </li>   
+            {%endif%}
+            {%if login%}
+            <li>
+            <a href="/login/logout"><span>Logout</span></a>
+           
+            </li>   
+            {%endif%}
+            <!--end-->
+             <li class="search nav navbar-right">
+                <ul class="nav nav-search">
+                    <li>
+                        <form class="navbar-form hidden-xs navbar-left" role="search">
+                        <div class="form-group">
+                            <input type="text" placeholder="search ..." class="form-control">
+                        </div>
+                       
+                        <button type="submit" class="btn btn-defualt" id="search" ><span class="glyphicon glyphicon-search"></span></button>
+                        
+                            
+                        </form>
+                    </li>
+                </ul>            		
+            </li>
+     </ul>
+    </nav>
+    <div class="container-fluid" id="total">
+    	<div class="conatainer" id="feeds">
+        	<div class="feed-holder">
+            <!--<span class="prf_name">{{VERTEX_DETAIL|title}}'s profile</span>-->
+            	<div class="about">
+                	<section>
+                    	<div class="images">
+                        	<div class="avatar-holder"><img class="avatar-large" src="{%static 'style/images/default_avatar.png'%}"/></div>
+                        </div>
+                        <article class="about">
+                        	<strong>{{VERTEX_DETAIL|title}}</strong><br>
+                            <span>{{AGE|default:'?'}} years old.</span>
+                            <br>
+                            <span>{{Gender|default:'he/she'|title}} is from {{CITY|default:'city'}}, {{COUNTRY|default:'country'}}.</span>
+                            <br>
+                            <a id="more" style="cursor:pointer">More about {{VERTEX_DETAIL|title}}</a>
+                            <div class="more">
+                                <span>Bithdate : {{BIRTHDAY|default:'BIRTHDAY'}}</span><br>
+                                <span>Tel : {{phone|default:'000-000000'|phone2numeric}}</span><br>
+                                <span>Email : {{email|default:'email@example.com'}}</span><br>
+                                
+                            </div>
+                        </article>
+                    </section>
+                </div>
+                {%if flows %}
+                <div class="flows">
+            	{%for flow in flows%}
+                	<section class="post">
+                    <!--<div class="img-circle">
+                    	<img class="img-circle who" src="IMG/404.png">
+                       </div>-->
+                    	<article class="post">
+                        <div class="detail">
+                    	<img class="img-circle who" src="{%static 'style/images/default_avatar.png'%}">
+                        <span> By {{flow.owner}}</span>
+                        <span>at {{flow.pub_date}}</span>
+                       </div>
+                        	<h3>title</h3>
+                            <p>{{flow.text}}</p>
+                            <div id="actions">
+                            	<ul>
+                                	<li><button id="like"  class="items" style="background:none;border:none;cursor:pointer"><span class="glyphicon glyphicon-thumbs-up"><b class="badge">{{flow.likes}}</b></span></button></li>
+                                    <li id="comment"><button class="items"style="background:none;border:none;cursor:pointer"><span class="glyphicon glyphicon-comment"><b class="badge">{{flow.comment|default:'0'}}</b></span></button></li>
+                                    <li id="comment" style="float:right"><button class="items" style="background:none;border:none;cursor:pointer"><span class="glyphicon glyphicon-new-window"></span></button></li>
+                                    
+                                </ul>
+                                {%if comments%}
+                                <ul class="comments">
+                                	{%for cm in cm_list%}
+                                    	<li class="{%cycle 'row1' 'row2'%}"><strong>{{cm.person}}</strong><br><p>{{cm.text}}</p></li>
+                                    {%endfor%}
+                                 {%endif%}
+                                </ul>
+                            </div>
+                        </article>
+                    </section>
+                {%endfor%}
+            </div>
+        {%else%}
+        	There is any Post
+        {%endif%}
+         </div>
+        </div>        
+    </div>
+    <footer>
+    	Powered By Django 1.6.2
+    </footer>
+   <link href="{%static 'template/CSS/bootstrap.min.css'%}" rel="stylesheet">
+    <link href="{%static 'template/CSS/homePage.css'%}" rel="stylesheet">
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{%static 'template/js/blur.min.js'%}"></script>
+    <script src="{%static 'template/js/bootstrap.min.js'%}"></script>
+    <script src="{%static 'template/js/custom.js'%}"></script>
+    <script>
+		$('a#more').on('click',function(){
+				 if ($('div.more').is(':visible')){
+					 $('a#more').text("More about {{VERTEX_DETAIL|title}}");
+				 }
+				 else {
+					 $('a#more').text("Less about {{VERTEX_DETAIL|title}}");
+				 }
+					$('div.more').slideToggle(600);
+				});
+    </script>
+    </div>
+  </body>
+</html>

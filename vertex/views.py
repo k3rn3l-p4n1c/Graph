@@ -32,11 +32,14 @@ def profile(request, user_id):
 			
 	vertex = Vertex.objects.get(user_id = user_id)
 	flows = vertex.flow_set.order_by('-last_forward_date')[:5]
+	heOrShe = "He" if vertex.sex else "She"
 	if me:
-		return render_to_response('home.html',{"VERTEX_DETAIL":"yourself","VERTEX_ID":user_id, "FOLLOWING_VERTEX":vertex.get_following(), "FOLLOWER_VERTEX":vertex.get_followers(),"flows":flows,},context_instance=RequestContext(request))
+		return render_to_response('vertex.html',
+{"VERTEX_DETAIL":"yourself"                         ,"VERTEX_ID":user_id, "FOLLOWING_VERTEX":vertex.get_following(), "FOLLOWER_VERTEX":vertex.get_followers(),"flows":flows,"COUNTRY":vertex.country , "CITY":vertex.city,"phone":vertex.tel,"email":vertex.email,"Gender":heOrShe,"BIRTHDAY":vertex.birthdate,"AGE": vertex.age() },
+context_instance=RequestContext(request))
 	else:
-		return render_to_response('home.html',
-{"VERTEX_DETAIL":vertex.firstname+' '+vertex.lastname,"VERTEX_ID":user_id,"FOLLOWING_VERTEX":vertex.get_following() , "FOLLOWER_VERTEX":vertex.get_followers(),"flows":flows },
+		return render_to_response('vertex.html',
+{"VERTEX_DETAIL":vertex.firstname+' '+vertex.lastname,"VERTEX_ID":user_id,"FOLLOWING_VERTEX":vertex.get_following() , "FOLLOWER_VERTEX":vertex.get_followers(),"flows":flows,"COUNTRY":vertex.country , "CITY":vertex.city,"phone":vertex.tel,"email":vertex.email ,"Gender":heOrShe,"BIRTHDAY":vertex.birthdate,"AGE": vertex.age()},
 context_instance=RequestContext(request))	
 	return HttpResponse("You're looking at vertex %s." % vertex)
 
