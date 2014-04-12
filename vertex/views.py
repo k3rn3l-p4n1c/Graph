@@ -35,11 +35,11 @@ def profile(request, user_id):
 	heOrShe = "He" if vertex.sex else "She"
 	if me:
 		return render_to_response('vertex.html',
-{"VERTEX_DETAIL":"yourself"                         ,"VERTEX_ID":user_id, "FOLLOWING_VERTEX":vertex.get_following(), "FOLLOWER_VERTEX":vertex.get_followers(),"flows":flows,"COUNTRY":vertex.country , "CITY":vertex.city,"phone":vertex.tel,"email":vertex.email,"Gender":heOrShe,"BIRTHDAY":vertex.birthdate,"AGE": vertex.age() },
+{"VERTEX_DETAIL":"yourself"                         ,"VERTEX_ID":user_id, "FOLLOWING_VERTEX":vertex.get_following(), "FOLLOWER_VERTEX":vertex.get_followers(),"flows":flows,"COUNTRY":vertex.country , "CITY":vertex.city,"phone":vertex.tel,"email":vertex.email,"Gender":heOrShe,"BIRTHDAY":vertex.birthdate,"AGE": vertex.age(),"login":client!=None },
 context_instance=RequestContext(request))
 	else:
 		return render_to_response('vertex.html',
-{"VERTEX_DETAIL":vertex.firstname+' '+vertex.lastname,"VERTEX_ID":user_id,"FOLLOWING_VERTEX":vertex.get_following() , "FOLLOWER_VERTEX":vertex.get_followers(),"flows":flows,"COUNTRY":vertex.country , "CITY":vertex.city,"phone":vertex.tel,"email":vertex.email ,"Gender":heOrShe,"BIRTHDAY":vertex.birthdate,"AGE": vertex.age()},
+{"VERTEX_DETAIL":vertex.firstname+' '+vertex.lastname,"VERTEX_ID":user_id,"FOLLOWING_VERTEX":vertex.get_following() , "FOLLOWER_VERTEX":vertex.get_followers(),"flows":flows,"COUNTRY":vertex.country , "CITY":vertex.city,"phone":vertex.tel,"email":vertex.email ,"Gender":heOrShe,"BIRTHDAY":vertex.birthdate,"AGE": vertex.age(),"login":client!=None },
 context_instance=RequestContext(request))	
 	return HttpResponse("You're looking at vertex %s." % vertex)
 
