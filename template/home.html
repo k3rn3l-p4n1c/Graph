@@ -176,6 +176,17 @@
     <script src="{%static 'template/js/blur.min.js'%}"></script>
     <script src="{%static 'template/js/bootstrap.min.js'%}"></script>
     <script src="{%static 'template/js/custom.js'%}"></script>
+    <script>
+		$('a#more').on('click',function(){
+				 if ($('div.more').is(':visible')){
+					 $('a#more').text("More about {{VERTEX_DETAIL|title}}");
+				 }
+				 else {
+					 $('a#more').text("Less about {{VERTEX_DETAIL|title}}");
+				 }
+					$('div.more').slideToggle(600);
+				});
+    </script>
     </div>
   </body>
 </html>

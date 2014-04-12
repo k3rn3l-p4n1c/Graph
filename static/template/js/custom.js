@@ -12,15 +12,7 @@ $(window).load(function(){
 				radius: 30,
 				overlay: 'rgba(0, 0, 0, .2)'
 			});
-			$('a#more').on('click',function(){
-				 if ($('div.more').is(':visible')){
-					 $('a#more').text("More about {{VERTEX_DETAIL|title}}");
-				 }
-				 else {
-					 $('a#more').text("Less about {{VERTEX_DETAIL|title}}");
-				 }
-					$('div.more').slideToggle(600);
-				});
+			
 			if ($(window).width() < 1000){
 				$('div.post').css('float','none');
 			}
