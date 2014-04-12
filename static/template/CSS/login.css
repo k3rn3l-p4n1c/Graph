@@ -1,35 +1,50 @@
 @charset "utf-8";
 /* CSS Document */
 body{
-	background:#61C2BC;
+	background:#ccc;
 	font-family:"Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, sans-serif;
 	text-align:center;	
-	
+	margin:0px;
+	display:none;
 }
 *{
 	margin-top:5px;
 }
 form{
-	background:#fff;
+	background:none;
 	border:none;
-	
 }
 div{
-	background:#fff;
-	border-radius:15px;
-	box-shadow:3px 3px 0px 0px #454545;
+	background:url(../IMG/tile.png);
+	border:solid 1px #454545;
+	text-align:center;
+	/*border-radius:15px;*/
+/*	box-shadow:3px 3px 0px 0px #454545;*/
+	opacity:0.8;
+	color:#fff;
+	position:absolute;
+	width:100%;
+	top:25%;
 }
 fieldset{
 	border:none;
 	border-radius:15px;
 	width:auto;
-	
+	text-align:center;
+
+}
+b{
+	color:#fff;
+}
+legend{
+	text-align:center;
+	margin:auto;
 }
 .btn{
 	margin-top : 25px; 
 	margin-right:5px; 
 	font-size:15;
-	background:#0f9;
+	background:#333;
 	padding:5px;
 	min-height:45px;
 	min-width:150px;
@@ -45,4 +60,14 @@ fieldset{
 }
 em{
 	color:red;
+}
+input{
+	padding:5px;
+	border-radius:5px;
+	border:none;
+}
+a{
+	color:#0FF;
+	font-weight:bold;
+	
 }

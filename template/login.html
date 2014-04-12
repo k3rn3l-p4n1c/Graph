@@ -33,7 +33,7 @@ Do the following if you're using your customized build of modernizr (http://www.
         <form action="/login/login" method="POST" id="Sign Up!" style="margin-top:3%;">
 		        {% csrf_token %}
 		        <em>{{SERVER_MESSAGE}}</em>
-                <legend style="font-size:18; color:#000000 ;"><b>Login</b></legend>
+                <legend style="font-size:18; color:#000000 ;"><b>Login</b></legend><br>
                 <input type="email" size="25" name="email" placeholder="Email" style="font-size:16;"><br>
                 <input type="password" size="25" name="password" placeholder="Password" style="font-size:16;"><br>
                 <input type="submit" name="Login" value="Connect to Graph" class="btn">
@@ -43,6 +43,10 @@ Do the following if you're using your customized build of modernizr (http://www.
         </form>
      </fieldset>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script>$(window).load(function(){
+			$('body').fadeTo(600,1);
+		});</script>
 </body>
 
 </html>
