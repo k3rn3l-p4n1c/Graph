@@ -8,6 +8,10 @@ from urllib import urlencode
 def view(request):
 	query = request.META['QUERY_STRING']
 	msg = ""
+	print authDetail(request)
+	if authDetail(request)[0] == True:
+		print "redirect to home."
+		return HttpResponseRedirect("/home/")
 	if query:
 		msg = cgi.parse_qs(query)['server_message'][0]
 	return render_to_response('login.html',
