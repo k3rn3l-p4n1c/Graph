@@ -3,29 +3,26 @@ from django.http import HttpResponse,HttpResponseRedirect
 from vertex.models import Vertex,Edge,Flow
 import json
 from django.utils import timezone
+from login.views import authDetail
 
    
 def profile(request, user_id):
-	client = None
-	try:
-		eml = request.COOKIES[ 'email' ]
-		pwd = request.COOKIES[ 'password' ]
-		client = Vertex.objects.get(email = eml)
-		if client.password != pwd:
-			raise LookupError()
-	except:
-		client = None	
+
 	try:
 		vertex = Vertex.objects.get(user_id=user_id)       
 	except :
-		return render_to_response('404error.html',{},context_instance=RequestContext(request))
-#flows = client.flow_set.order_by('-last_forward_date')[:5] 
+		return render_to_response('404error.html',{},context_instance=RequestContext(request))	
+	
+	auth = authDetail(request)
 	me = False
-	if client:
+	if auth[0]:
+		client = auth[1]
 		if client.user_id == vertex.user_id:
 			me = True
+	else:
+		client = None
+		
 	if request.POST and client and not me:       
-
 		try:
 			new_edge = Edge.objects.get(vertex_tail_id = client.user_id,vertex_head_id = user_id)
 		except:
