@@ -58,8 +58,12 @@ legend{
 .btn:active{
 	box-shadow:inset 1px 1px 0px #454545;
 }
+.btn:hover{
+	background:#ccc;
+	color:#454545;
+}
 em{
-	color:red;
+	color:#0f9;
 }
 input{
 	padding:5px;
