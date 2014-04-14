@@ -48,58 +48,58 @@ class Edge(models.Model,object):
 	def __unicode__(self):  # Python 3: def __str__(self):
 		return self.vertex_tail_id+' ==> '+self.vertex_head_id
     
-class Flow(models.Model): 
-    
-    vertexes = models.ManyToManyField(Vertex)
-    text = models.CharField(max_length=300)
-    pub_date = models.DateTimeField('date published')
-    owner = models.CharField(max_length=100) 
-    last_forward_date = models.DateTimeField('date published')
-    history = models.TextField(null=True)
-    likes = models.IntegerField()
-    likers = models.TextField(null=True)
-    def get_date(self):
-        return str(self.pub_date.date())
-
-    def set_history(self,to_vertex):
-        jsonDec = json.decoder.JSONDecoder()
-        try:
-            history_list = jsonDec.decode(self.history)
-            history_list.append(to_vertex)
-        except TypeError:
-            history_list=list(to_vertex)
-            
-        self.history = json.dumps(history_list)
-        self.save()
-    def get_history(self):
-        jsonDec = json.decoder.JSONDecoder()
-        try:
-            history_list = jsonDec.decode(self.history)
-        except TypeError:
-            history_list = list()
-        return history_list
-    def like(self,user_id): 
-        jsonDec = json.decoder.JSONDecoder()
-        try:
-            likers_list = jsonDec.decode(self.likers)
-            if user_id in likers_list:
-                likers_list.remove(user_id)
-                self.likes -= 1
-            else:
-                likers_list.append(user_id)
-                self.likes += 1
-            self.likers = json.dumps(likers_list)
-            self.save()
-        except TypeError:
-            likers_list = [user_id]
-            self.likes += 1
-        self.likers = json.dumps(likers_list)
-        self.save()
-            
-        
-    def __unicode__(self):
-        return self.text
-
+class Flow(models.Model):
+	
+	vertexes = models.ManyToManyField(Vertex)
+	text = models.CharField(max_length=300)
+	pub_date = models.DateTimeField('date published')
+	owner = models.CharField(max_length=100) 
+	last_forward_date = models.DateTimeField('date published')
+	history = models.TextField(null=True)
+	likes = models.IntegerField()
+	likers = models.TextField(null=True)
+	def get_date(self):
+		return str(self.pub_date.date())
+	def set_history(self,to_vertex):
+		jsonDec = json.decoder.JSONDecoder()
+		try:
+			history_list = jsonDec.decode(self.history)
+			history_list.append(to_vertex)
+		except TypeError:
+			history_list=list(to_vertex)
+			self.history = json.dumps(history_list)
+		self.save()
+	def get_history(self):
+		jsonDec = json.decoder.JSONDecoder()
+		try:
+			history_list = jsonDec.decode(self.history)
+		except TypeError:
+			history_list = list()
+			return history_list
+	def like(self,user_id): 
+		jsonDec = json.decoder.JSONDecoder()
+		try:
+			likers_list = jsonDec.decode(self.likers)
+			if user_id in likers_list:
+				likers_list.remove(user_id)
+				self.likes -= 1
+			else:
+				likers_list.append(user_id)
+				self.likes += 1
+			self.likers = json.dumps(likers_list)
+			self.save()
+		except TypeError:
+			likers_list = [user_id]
+			self.likes += 1
+		self.likers = json.dumps(likers_list)
+		self.save()
+	def __unicode__(self):
+		return self.text
+class Comment(models.Model):
+	flows = models.ManyToManyField(Flow)
+	text = models.CharField(max_length=400)
+	pub_date = models.DateTimeField('date published')
+	owner = models.CharField(max_length=100) 
 	
 # Create your models here. 
 
