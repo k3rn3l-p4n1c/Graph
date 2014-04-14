@@ -86,6 +86,7 @@ def like_flow(request,liker_id):
 	flow = Flow.objects.get(text = flow_text)
 	flow.like(liker_id)
 	flow.save()
-    
-    
+
+
+
 # Create your views here.

@@ -22,7 +22,24 @@ $(window).load(function(){
 			
 			$('.navbar').on('mouseleave',function(){
 				$(this).fadeTo(600,0.6);
-				});	
+				});
+			var show = 0;
+			$('.slide').click(function(){
+				
+				if (show == 0){
+				$('div.falow').animate({width:'25%'},600);
+				$(this).animate({'right':'28%'},600,function(){ show = 1 ; });
+				$('.slide span').removeClass('glyphicon-chevron-left');
+				$('.slide span').addClass('glyphicon-chevron-right');
+				}
+				if (show == 1){
+					$('div.falow').animate({width:'0%'},600);
+					$(this).animate({'right':'2%'},600,function(){ show = 0 ; });
+					$('.slide span').removeClass('glyphicon-chevron-right');
+					$('.slide span').addClass('glyphicon-chevron-left');
+				}
+
+			});
 		});
 		$('div.flows').load(function(){
 				alert('loading');

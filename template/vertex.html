@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 {%load static%}
 {%load humanize%}
+{% load dajaxice_templatetags %}
 <html lang="en">
+
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Graph</title>
-
+    {% dajaxice_js_import %}
     <!-- Bootstrap -->
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -22,6 +24,7 @@
   <div class="fill"></div>
   </div>
   <div id="bg">
+  
    	<nav class="navbar navbar-inverse">
 
 	<img class="navbar-brand" src="{%static 'style/images/default_avatar.png'%}" id="avatar"/>	
@@ -68,9 +71,6 @@
                 
             </ul>
             </li>            
-            
-            
-            
             <!--log in form-->
             {%if not login%}
             <li>
@@ -81,8 +81,10 @@
             {%if login%}
             <li>
             <a href="/login/logout"><span>Logout</span></a>
-           
             </li>   
+            <li>
+            <a onclick="Dajaxice.sayhello(my_js_callback,{'do':'falow'});"><span>Falow</span></a>
+            </li>
             {%endif%}
             <!--end-->
              <li class="search nav navbar-right">
@@ -102,6 +104,7 @@
             </li>
      </ul>
     </nav>
+    
     <div class="container-fluid" id="total">
     	<div class="conatainer" id="feeds">
         	<div class="feed-holder">
@@ -144,8 +147,9 @@
                             <p>{{flow.text}}</p>
                             <div id="actions">
                             	<ul>
-                                	<li><button id="like"  class="items" style="background:none;border:none;cursor:pointer"><span class="glyphicon glyphicon-thumbs-up"><b class="badge">{{flow.likes}}</b></span></button></li>
-                                    <li id="comment"><button class="items"style="background:none;border:none;cursor:pointer"><span class="glyphicon glyphicon-comment"><b class="badge">{{flow.comment|default:'0'}}</b></span></button></li>
+                                	<li><button  id="like" frommethod="post" onclick="Dajaxice.sayhello(my_js_callback,{'likes':'{{VERTEX_ID}}','do':'like'});"
+ class="items" style="background:none;border:none;cursor:pointer"><span class="glyphicon glyphicon-thumbs-up"><b class="badge">{{flow.likes}}</b></span></button></li>
+                                    <li id="comment"><button class="items" style="background:none;border:none;cursor:pointer"><span class="glyphicon glyphicon-comment"><b class="badge">{{flow.comment|default:'0'}}</b></span></button></li>
                                     <li id="comment" style="float:right"><button class="items" style="background:none;border:none;cursor:pointer"><span class="glyphicon glyphicon-new-window"></span></button></li>
                                     
                                 </ul>
@@ -170,6 +174,17 @@
     <footer>
     	Powered By Django 1.6.2
     </footer>
+    <div class="slide"><span class="glyphicon glyphicon-chevron-left"></span></div>
+    <div class="falow">
+    <section>
+        <span>Falowing</span>
+        <article><a href='vertex/{{person_id}}'>who is {{person}}</a></article>
+    </section>
+     <section>
+        <span>Falowers</span>
+        <article><a href='vertex/{{person_id}}'>who is {{person}}</a></article>
+    </section>
+    </div>
    <link href="{%static 'template/CSS/bootstrap.min.css'%}" rel="stylesheet">
     <link href="{%static 'template/CSS/vertex.css'%}" rel="stylesheet">
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -178,6 +193,11 @@
     <script src="{%static 'template/js/blur.min.js'%}"></script>
     <script src="{%static 'template/js/bootstrap.min.js'%}"></script>
     <script src="{%static 'template/js/custom.js'%}"></script>
+     <script>
+     function my_js_callback(data){
+    alert(data.message);
+}
+      </script>
     <script>
 		$('a#more').on('click',function(){
 				 if ($('div.more').is(':visible')){
@@ -189,6 +209,8 @@
 					$('div.more').slideToggle(600);
 				});
     </script>
+ 
+
     </div>
   </body>
 </html>

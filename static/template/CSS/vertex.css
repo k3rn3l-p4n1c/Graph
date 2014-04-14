@@ -232,4 +232,58 @@ div#actions ul li {
 	border:solid 1px #ccc;
 }
 /* CSS Document */
+.falow{
+	position: fixed;
+	width: 0%;
+	float: right;
+	right: 0;
+	margin: 0px;
+	background: rgba(155,155,155,0.5);
+	top:0;
+	height: 100%;
+	border-left : solid 2px #e3e3e3;
+	font-size: 2em;
+}
+.falow section{
+	text-align: center;
+}
+.falow section article {
+	min-height: 45px;
+	padding: 5px;
+	border-top:solid 1px #ccc;
+	border-bottom:solid 1px #ccc;
+	text-align: center;
+	opacity: 0.6;
+	background: #333;
 
+}
+.falow article:hover{
+	color: #fff;
+	opacity: 1;
+}
+.falow section a {
+	color: #fff;
+	text-decoration: none;
+}
+.slide{
+	position: fixed;
+	height: 150px;
+	width: 35px;
+	right:2%;
+	top: 45%;
+	background: #333;
+	opacity: 0.6;
+	color: #fff;
+	font-size: 2em;
+	word-wrap : nowrap;
+	border: solid 1px #ccc;
+	border-radius: 5px;
+}
+.slide:hover {
+	opacity: 1;
+}
+.slide span{
+	vertical-align: middle;
+	position: absolute;
+	top: 40%;
+}
