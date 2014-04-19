@@ -208,7 +208,10 @@
 				 }
 					$('div.more').slideToggle(600);
 				});
-			
+			$('button#like').on('click',function(){
+				$('div.flows').load();
+			});
+    </script>
  
 
     </div>

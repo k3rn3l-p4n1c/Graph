@@ -6,7 +6,7 @@ from vertex.models import *
 @dajaxice_register(method = 'POST' , name = 'sayhello')
 def sayhello(request,likes,do,flow_id=None):
 	if do == 'like':
-		flow=Flow.objects.get(id = int(flow_id))
+		flow=Flow.objects.get(id = flow_id)
 		flow.like(likes)
 		
 		#create like codes here

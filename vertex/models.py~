@@ -88,7 +88,7 @@ class Flow(models.Model):
 				self.likes += 1
 			self.likers = json.dumps(likers_list)
 			self.save()
-		except :
+		except TypeError:
 			likers_list = [user_id]
 			self.likes += 1
 		self.likers = json.dumps(likers_list)
