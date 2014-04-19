@@ -21,14 +21,6 @@ def profile(request, user_id):
 			me = True
 	else:
 		client = None
-		
-	if request.POST and client and not me:       
-		try:
-			new_edge = Edge.objects.get(vertex_tail_id = client.user_id,vertex_head_id = user_id)
-		except:
-			new_edge = Edge(vertex_tail_id = client.user_id,vertex_head_id = user_id)
-			new_edge.save()
-			
 			
 	vertex = Vertex.objects.get(user_id = user_id)
 	flows = vertex.flow_set.order_by('-last_forward_date')[:5]

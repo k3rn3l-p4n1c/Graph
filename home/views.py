@@ -6,7 +6,7 @@ from vertex.models import Vertex
 from django.core.exceptions import ObjectDoesNotExist
 
 def home(request):
-	print 'POST:',request.POST
+	print 'QUERY_STRING:',request.META['QUERY_STRING']
 	try:
 		eml = request.COOKIES[ 'email' ]
 		pwd = request.COOKIES[ 'password' ]
