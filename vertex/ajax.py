@@ -8,7 +8,6 @@ def sayhello(request,likes,do,flow_id=None):
 	if do == 'like':
 		flow=Flow.objects.get(id = int(flow_id))
 		flow.like(likes)
-		
 		#create like codes here
 		return simplejson.dumps({'message':'likes : %s'%likes})
 	elif do == 'comment':
@@ -19,8 +18,8 @@ def sayhello(request,likes,do,flow_id=None):
 		pass
 	elif do == 'falow':
 		#create falow's code here
-		print likes
-		if authDetail(request)[0] and False:
+		print 'follow:',likes
+		if authDetail(request)[0]:
 			client = authDetail(request)[1]
 			vertex = Vertex.objects.get(user_id = likes)
 			try:
@@ -31,3 +30,13 @@ def sayhello(request,likes,do,flow_id=None):
 				print new_edge
 			
 		return simplejson.dumps({'message':""})
+	elif do == 'unfollow':
+		if authDetail(request)[0]:
+			client = authDetail(request)[1]
+			vertex = Vertex.objects.get(user_id = likes)
+			try:
+				new_edge = Edge.objects.get(vertex_tail_id = client.user_id,vertex_head_id = vertex.user_id).delete();
+			except:
+				pass
+		return simplejson.dumps({'message':"unfollow"})
+	print do

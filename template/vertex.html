@@ -81,10 +81,17 @@
             {%if login%}
             <li>
             <a href="/login/logout"><span>Logout</span></a>
-            </li>   
-            <li>
-            <a onclick="Dajaxice.sayhello(my_js_callback,{'likes':'{{VERTEX_ID}}','do':'falow'});"><span>Fallow</span></a>
             </li>
+            {%if not following%}
+            <li>
+            <a onclick="Dajaxice.sayhello(my_js_callback,{'likes':'{{VERTEX_ID}}','do':'falow'});"><span>Follow</span></a>
+            </li>
+            {%endif%}
+            {%if following%}
+            <li>
+            <a onclick="Dajaxice.sayhello(my_js_callback,{'likes':'{{VERTEX_ID}}','do':'unfollow'});"><span>Unfollow</span></a>
+            </li>
+            {%endif%}
             {%endif%}
             <!--end-->
              <li class="search nav navbar-right">
