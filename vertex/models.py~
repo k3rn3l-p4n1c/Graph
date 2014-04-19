@@ -39,7 +39,7 @@ class Vertex(models.Model,object):
     	return datetime.datetime.now().year - self.birthdate.year
     
     def __unicode__(self):  # Python 3: def __str__(self):
-        return self.firstname.capitalize() +' '+self.lastname.capitalize()
+        return self.firstname+' '+self.lastname
         
 class Edge(models.Model,object): 
 	""" tail ==> head """
