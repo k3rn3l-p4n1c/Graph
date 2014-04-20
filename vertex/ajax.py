@@ -1,7 +1,7 @@
 from django.utils import simplejson
 from dajaxice.decorators import dajaxice_register
-from login.views import authDetail
 from vertex.models import *
+from login.views import authDetail
 
 @dajaxice_register(method = 'POST' , name = 'sayhello')
 def sayhello(request,likes,do,flow_id=None):

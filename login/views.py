@@ -38,27 +38,31 @@ def login(request):
 		return HttpResponseRedirect('/login/?'+query_str)
 
 	response = HttpResponseRedirect('/home/')
-  	response.set_cookie( 'email' , eml )
-  	response.set_cookie( 'password' , pwd)
+	request.session['email'] = eml
+	request.session['password'] = pwd
   	return response
 
 
 def logout(request):
 	response = HttpResponseRedirect('/')
-	response.delete_cookie('email')
-	response.delete_cookie('password')
+	try:
+		del request.session['email']
+		del request.session['password']
+	except:
+		pass
 	return response
 
 def authDetail(request):
 	try:
-		eml = request.COOKIES[ 'email' ]
-		pwd = request.COOKIES[ 'password' ]
+		eml = request.session[ 'email' ]
+		pwd = request.session[ 'password' ]
 	except:
-		return [False,]
+		return [False,"..."]
 	try:
 		client = Vertex.objects.get(email = eml)
 		if client.password != pwd:
 			raise LookupError()
+		print client
 	except Vertex.DoesNotExist:
 		return [False,"WRONG_USR"]
 	except LookupError:

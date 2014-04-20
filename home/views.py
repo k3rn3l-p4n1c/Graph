@@ -4,27 +4,20 @@ from urllib import urlencode
 from time import sleep
 from vertex.models import Vertex
 from django.core.exceptions import ObjectDoesNotExist
+from login.views import authDetail
 
 def home(request):
-	print 'QUERY_STRING:',request.META['QUERY_STRING']
-	try:
-		eml = request.COOKIES[ 'email' ]
-		pwd = request.COOKIES[ 'password' ]
-	except KeyError:
-		d = {'server_message':"You are not logged in."}
-		query_str = urlencode(d)
-		return HttpResponseRedirect('/login/?'+query_str)
-	try:
-		client = Vertex.objects.get(email = eml)
-		if client.password != pwd:
-			raise LookupError()
-	except Vertex.DoesNotExist:
+
+	if not authDetail(request)[0]:
 		sleep(3)
-		d = {'server_message':"Wrong username or password."}
+		d = {'server_message':authDetail(request)[1]}
 		query_str = urlencode(d)
 		return HttpResponseRedirect('/login/?'+query_str)
+	else:
+		client = authDetail(request)[1]
+		
 	return render_to_response('home.html',
-		{"USER_EMAIL":eml,"login":True,'VERTEX_DETAIL':client},
+		{"USER_EMAIL":client.email,"login":True,'VERTEX_DETAIL':client},
 		context_instance=RequestContext(request))
 
 # Create your views here.

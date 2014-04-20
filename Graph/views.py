@@ -1,14 +1,10 @@
 from django.shortcuts import render_to_response,RequestContext
 from django.http import HttpResponse,HttpResponseRedirect
+from login.views import authDetail
 
 def firstpage(request):
-	try:
-		eml = request.COOKIES['email']
-		pwd = request.COOKIES['password']
-	except :
-		print firstpage
+	if not authDetail(request)[0]:
 		return render_to_response('firstpage.html',{},context_instance=RequestContext(request))
-	print 'Graph/Graph/views.py: usr:',eml,'  pwd: ',pwd
 	return HttpResponseRedirect('/home/')
 
 # Create your views here.
