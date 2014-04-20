@@ -184,12 +184,16 @@
     <div class="slide"><span class="glyphicon glyphicon-chevron-left"></span></div>
     <div class="falow">
     <section>
-        <span>Falowing</span>
-        <article><a href='vertex/{{person_id}}'>who is {{person}}</a></article>
+        <span>Following</span>
+        {%for ver in FOLLOWING_VERTEX%}
+            	<article><a href='/vertex/{{ver.user_id}}'>{{ver}}</a></article>
+        {%endfor%}
     </section>
      <section>
-        <span>Falowers</span>
-        <article><a href='vertex/{{person_id}}'>who is {{person}}</a></article>
+        <span>Followers</span>
+        {%for ver in FOLLOWER_VERTEX%}
+            	<article><a href='/vertex/{{ver.user_id}}'>{{ver}}</a></article>
+        {%endfor%}
     </section>
     </div>
    <link href="{%static 'template/CSS/bootstrap.min.css'%}" rel="stylesheet">
