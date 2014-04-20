@@ -28,7 +28,7 @@ def profile(request, user_id):
 	following = vertex in client.get_following()
 	if me:
 		return render_to_response('vertex.html',
-{"VERTEX_DETAIL":"yourself"                         ,"VERTEX_ID":user_id, "FOLLOWING_VERTEX":vertex.get_following(), "FOLLOWER_VERTEX":vertex.get_followers(),"flows":flows,"COUNTRY":vertex.country , "CITY":vertex.city,"phone":vertex.tel,"email":vertex.email,"Gender":heOrShe,"BIRTHDAY":vertex.birthdate,"AGE": vertex.age(),"login":client!=None },
+{"VERTEX_DETAIL":"Yourself"                         ,"VERTEX_ID":user_id, "FOLLOWING_VERTEX":vertex.get_following(), "FOLLOWER_VERTEX":vertex.get_followers(),"flows":flows,"COUNTRY":vertex.country , "CITY":vertex.city,"phone":vertex.tel,"email":vertex.email,"Gender":heOrShe,"BIRTHDAY":vertex.birthdate,"AGE": vertex.age(),"login":client!=None },
 context_instance=RequestContext(request))
 	else:
 		return render_to_response('vertex.html',

@@ -24,7 +24,7 @@ def home(request):
 		query_str = urlencode(d)
 		return HttpResponseRedirect('/login/?'+query_str)
 	return render_to_response('home.html',
-		{"USER_EMAIL":eml,"login":True},
+		{"USER_EMAIL":eml,"login":True,'VERTEX_DETAIL':client},
 		context_instance=RequestContext(request))
 
 # Create your views here.
