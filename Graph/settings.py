@@ -93,7 +93,7 @@ USE_TZ = True
 STATIC_ROOT = '/users/Hossein/Desktop/git/graph/static/'
 
 STATIC_URL = '/static/'
-STATIC_URL = '/template/'
+#STATIC_URL = '/template/'
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'template')]
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
