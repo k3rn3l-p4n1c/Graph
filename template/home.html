@@ -140,7 +140,7 @@
                         <span> By {{flow.owner}}</span>
                         <span>at {{flow.pub_date|naturaltime}}</span>
                        </div>
-                        	<h3>title</h3>
+                        	
                             <p>{{flow.text}}</p>
                             <div id="actions">
                             	<ul>
@@ -149,6 +149,10 @@
                                     <li id="comment" style="float:right"><button class="items" style="background:none;border:none;cursor:pointer"><span class="glyphicon glyphicon-new-window"></span></button></li>
                                     
                                 </ul>
+                                
+                                    <input type="text" name="comment_text" class="comment"><br>
+                                    <button method="post" type="submit" onclick="Dajaxice.vertex.sayhello(my_js_callback,{'do':'comment','likes':'{{VERTEX_ID}}','flow_id':flow.id,'text':$('input.comment').val()});" value="">comment</button>
+                                
                                 {%if comments%}
                                 <ul class="comments">
                                 	{%for cm in cm_list%}

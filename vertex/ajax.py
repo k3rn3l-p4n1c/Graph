@@ -5,7 +5,7 @@ from vertex.models import *
 from login.views import authDetail
 
 @dajaxice_register(method = 'POST' , name = 'sayhello')
-def sayhello(request,likes,do,flow_id=None):
+def sayhello(request,likes,do,flow_id=None,text=""):
 	if do == 'like':
 		flow=Flow.objects.get(id = int(flow_id))
 		flow.like(likes)
