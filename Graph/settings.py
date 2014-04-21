@@ -151,5 +151,6 @@ LOGGING = {
         },
     }
 }
+SITE_ID = 1
 
 
