@@ -143,14 +143,13 @@ textarea.post{
 	border-radius:2px;
 	resize:none;
 	color:#454545;
+	min-height: 75px;
 }
-textarea.post:hover,textarea.post:focus{
+textarea.post:hover,input.post:focus{
 	opacity:1;
 	
 }
-textarea:focus{
-	height:150px;
-}
+
 button.postbtn:hover{
 	background:#e3e3e3;
 	color:#333;

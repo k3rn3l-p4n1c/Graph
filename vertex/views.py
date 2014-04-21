@@ -36,19 +36,26 @@ context_instance=RequestContext(request))
 context_instance=RequestContext(request))	
 	return HttpResponse("You're looking at vertex %s." % vertex)
 
-def postflow(request,user_id):
-    flow_text = request.POST['flow_text']
-    pub_date = timezone.now()
-    newflow = Flow.objects.create(text = flow_text,pub_date = timezone.now(),last_forward_date = timezone.now(),owner = user_id)
-    vertex = Vertex.objects.get(user_id = user_id)
-    newflow.set_history(vertex.user_id)
-    newflow.save()
-    vertex.flow_set.add(newflow)
-    followers_list = vertex.get_followers()
-    for followers in followers_list:
-    	followers.flow_set.add(newflow)
-    	followers.save()
-        	
+def postflow(request):
+	useremail = request.POST['id']
+	vertex = Vertex.objects.get(email =useremail)
+	user_id = vertex.user_id
+
+	#useremail = request.POST['USER_EMAIL']
+	flow_text = request.POST['flow_text']
+	pub_date = timezone.now()
+	newflow = Flow.objects.create(text = flow_text,pub_date = timezone.now(),last_forward_date = timezone.now(),owner = user_id)
+	#vertex = Vertex.objects.get(user_id = user_id)
+	newflow.set_history(vertex.user_id)
+	newflow.save()
+	vertex.flow_set.add(newflow)
+	followers_list = vertex.get_followers()
+	for followers in followers_list:
+		followers.flow_set.add(newflow)
+		followers.save()
+
+	response = HttpResponseRedirect('/home/')
+	return response 	
     #gotta add others too
     
     
@@ -61,7 +68,8 @@ def forward(request,user_id,flow_id):
 	vertex = Vertex.objects.get(user_id = user_id)
 	forward_to = "all"
 	if forward_to == "all":
-		followers_list = vertex.get_followers()
+		followers_list = ve
+		rtex.get_followers()
 		for followers in followers_list:
 			followers.flow_set.add(flow)
 			followers.save()

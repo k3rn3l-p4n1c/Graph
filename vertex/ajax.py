@@ -1,5 +1,6 @@
-from django.utils import simplejson
+from django.utils import simplejson,timezone
 from dajaxice.decorators import dajaxice_register
+from dajax.core import Dajax
 from vertex.models import *
 from login.views import authDetail
 
@@ -15,7 +16,15 @@ def sayhello(request,likes,do,flow_id=None):
 		return simplejson.dumps({'message':'comment %s'%likes})
 	elif do == 'forward':
 		#create you forward codes here 
-		pass
+		flow = Flow.objects.get(id = flow_id)
+		flow.last_forward_date = timezone.now()
+		flow.save()
+		vertex = Vertex.objects.get(user_id = likes)
+		followers_list = vertex.get_followers()
+		for followers in followers_list:
+			followers.flow_set.add(flow)
+			followers.save()
+
 	elif do == 'falow':
 		#create falow's code here
 		print 'follow:',likes
@@ -39,4 +48,6 @@ def sayhello(request,likes,do,flow_id=None):
 			except:
 				pass
 		return simplejson.dumps({'message':"unfollow"})
+	elif do=='post':
+		print flow_id;
 	print do

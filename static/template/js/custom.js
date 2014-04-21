@@ -40,7 +40,8 @@ $(window).load(function(){
 				}
 
 			});
+			var end = 5;
+			$('#seemore').on('click',function(){
+				end = end +5 ;
+				});
 		});
-		$('div.flows').load(function(){
-				alert('loading');
-			});
