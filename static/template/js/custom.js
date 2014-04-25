@@ -38,6 +38,7 @@ $(window).load(function(){
 					$('.slide span').removeClass('glyphicon-chevron-right');
 					$('.slide span').addClass('glyphicon-chevron-left');
 				}
+			$('#slide_cm').on('click',function(){$('div#cm').hide();});
 
 			});
 			var end = 5;

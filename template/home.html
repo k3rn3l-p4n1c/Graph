@@ -145,20 +145,20 @@
                             <div id="actions">
                             	<ul>
                                 	<li><button id="like"  class="items" style="background:none;border:none;cursor:pointer"><span class="glyphicon glyphicon-thumbs-up"><b class="badge">{{flow.likes}}</b></span></button></li>
-                                    <li id="comment"><button class="items"style="background:none;border:none;cursor:pointer"><span class="glyphicon glyphicon-comment"><b class="badge">{{flow.comment|default:'0'}}</b></span></button></li>
+                                    <li id="comment"><button class="items"style="background:none;border:none;cursor:pointer"><span class="glyphicon glyphicon-comment"><b class="badge">{{flow.comment_set.count|default:'0'}}</b></span></button></li>
                                     <li id="comment" style="float:right"><button class="items" style="background:none;border:none;cursor:pointer"><span class="glyphicon glyphicon-new-window"></span></button></li>
                                     
                                 </ul>
                                 
-                                    <input type="text" name="comment_text" class="comment"><br>
-                                    <button method="post" type="submit" onclick="Dajaxice.vertex.sayhello(my_js_callback,{'do':'comment','likes':'{{VERTEX_ID}}','flow_id':flow.id,'text':$('input.comment').val()});" value="">comment</button>
+                                    <input type="text" name="comment_text" class="cm_inp"><br>
+                                    <button method="post" class="btn_cm"type="submit" onclick="Dajaxice.sayhello(my_js_callback,{'do':'comment','likes':'{{VERTEX_ID}}','flow_id':flow.id,'text':$('input.comment').val()});" value="">comment</button>
                                 
-                                {%if comments%}
+                                {%if flow.comment_set.all%}
                                 <ul class="comments">
-                                	{%for cm in cm_list%}
-                                    	<li class="{%cycle 'row1' 'row2'%}"><strong>{{cm.person}}</strong><br><p>{{cm.text}}</p></li>
+                                	{%for cm in flow.comment_set.all%}
+                                    	<li class="cm"><strong>{{cm.owner}}</strong><br><p>{{cm.text}}</p></li>
                                     {%endfor%}
-                                 {%endif%}
+                                {%endif%}
                                 </ul>
                             </div>
                         </article>

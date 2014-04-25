@@ -20,7 +20,7 @@ def home(request):
 	flows = vertex.flow_set.order_by('-last_forward_date')[:5]
 		
 	return render_to_response('home.html',
-		{"USER_EMAIL":client.email,"login":True,'VERTEX_DETAIL':client,'flows':flows},
+		{"USER_EMAIL":client.email,"login":True,'VERTEX_DETAIL':client,'flows':flows,'VERTEX_ID':client.id},
 		context_instance=RequestContext(request))
 
 # Create your views here.

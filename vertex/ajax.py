@@ -12,6 +12,11 @@ def sayhello(request,likes,do,flow_id=None,text=""):
 		#create like codes here
 		return simplejson.dumps({'message':'likes : %s'%likes})
 	elif do == 'comment':
+		flow = Flow.objects.get(id = flow_id)
+		newcomment = Comment.objects.create(text = text,pub_date=timezone.now,owner = likes)
+		newcomment.save()
+		flow.comment_set.add(newcomment)
+		flow.save()
 		#create comment codes here
 		return simplejson.dumps({'message':'comment %s'%likes})
 	elif do == 'forward':
@@ -25,7 +30,7 @@ def sayhello(request,likes,do,flow_id=None,text=""):
 			followers.flow_set.add(flow)
 			followers.save()
 
-	elif do == 'falow':
+	elif do == 'follow':
 		#create falow's code here
 		print 'follow:',likes
 		if authDetail(request)[0]:
