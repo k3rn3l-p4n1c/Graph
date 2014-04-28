@@ -1,12 +1,14 @@
 <!DOCTYPE html>
+{%load humanize%}
 {%load static%}
+{% load dajaxice_templatetags %}
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Graph</title>
-
+      {% dajaxice_js_import %}
     <!-- Bootstrap -->
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -112,10 +114,16 @@
                         </div>
                         <script src="{%static 'template/respond.min.js'%}"></script>
                         <article class="about">
-                        	<textarea class="post" placeholder="Type Your news here ..." name="text"></textarea>
+                        <form action="/vertex/postflow" method="POST">
+                            {%csrf_token%}
+                            <textarea type="text" class="post" name='flow_text'></textarea><br>
+                            <input type="hidden" value="{{USER_EMAIL}}" name='id'><br>
+                            <input type="submit" class="btn" value="POST">
+                        	<!--<textarea type="text" class="post" name="text"></textarea>
                             <div class="postbuttons">
-                            	<button type="submit" class="postbtn"><span>POST</span></button>
-                            </div>
+                            	<button type="submit" onclick="my_js_callback();"class="postbtn"><span>POST</span></button>
+                            </div>-->
+                        </form>
                         </article>
                     </section>
                 </div>
@@ -130,23 +138,27 @@
                         <div class="detail">
                     	<img class="img-circle who" src="{%static 'style/images/default_avatar.png'%}">
                         <span> By {{flow.owner}}</span>
-                        <span>at {{flow.pub_date}}</span>
+                        <span>at {{flow.pub_date|naturaltime}}</span>
                        </div>
-                        	<h3>title</h3>
+                        	
                             <p>{{flow.text}}</p>
                             <div id="actions">
                             	<ul>
                                 	<li><button id="like"  class="items" style="background:none;border:none;cursor:pointer"><span class="glyphicon glyphicon-thumbs-up"><b class="badge">{{flow.likes}}</b></span></button></li>
-                                    <li id="comment"><button class="items"style="background:none;border:none;cursor:pointer"><span class="glyphicon glyphicon-comment"><b class="badge">{{flow.comment|default:'0'}}</b></span></button></li>
+                                    <li id="comment"><button class="items"style="background:none;border:none;cursor:pointer"><span class="glyphicon glyphicon-comment"><b class="badge">{{flow.comment_set.count|default:'0'}}</b></span></button></li>
                                     <li id="comment" style="float:right"><button class="items" style="background:none;border:none;cursor:pointer"><span class="glyphicon glyphicon-new-window"></span></button></li>
                                     
                                 </ul>
-                                {%if comments%}
+                                
+                                    <input type="text" name="comment_text" class="cm_inp"><br>
+                                    <button method="post" class="btn_cm"type="submit" onclick="Dajaxice.sayhello(my_js_callback,{'do':'comment','likes':'{{VERTEX_ID}}','flow_id':flow.id,'text':$('input.comment').val()});" value="">comment</button>
+                                
+                                {%if flow.comment_set.all%}
                                 <ul class="comments">
-                                	{%for cm in cm_list%}
-                                    	<li class="{%cycle 'row1' 'row2'%}"><strong>{{cm.person}}</strong><br><p>{{cm.text}}</p></li>
+                                	{%for cm in flow.comment_set.all%}
+                                    	<li class="cm"><strong>{{cm.owner}}</strong><br><p>{{cm.text}}</p></li>
                                     {%endfor%}
-                                 {%endif%}
+                                {%endif%}
                                 </ul>
                             </div>
                         </article>
@@ -165,12 +177,18 @@
    <link href="{%static 'template/CSS/bootstrap.min.css'%}" rel="stylesheet">
     <link href="{%static 'template/CSS/homePage.css'%}" rel="stylesheet">
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>-->
     <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="{%static 'template/js/jquery-1.8.3.js'%}"></script>
     <script src="{%static 'template/js/blur.min.js'%}"></script>
     <script src="{%static 'template/js/bootstrap.min.js'%}"></script>
     <script src="{%static 'template/js/custom.js'%}"></script>
     <script>
+        function my_js_callback(){
+            var $flow = $('textarea.post').val();
+            Dajaxice.vertex.sayhello({'do':'post','flow_id':$flow,'likes':'{{VERTEX_DETAIL}}'});
+           //alert(data.message);
+        }
 		$('a#more').on('click',function(){
 				 if ($('div.more').is(':visible')){
 					 $('a#more').text("More about {{VERTEX_DETAIL|title}}");

@@ -56,7 +56,7 @@ class Flow(models.Model):
 	owner = models.CharField(max_length=100) 
 	last_forward_date = models.DateTimeField('date published')
 	history = models.TextField(null=True)
-	likes = models.IntegerField()
+	likes = models.IntegerField(default=0)
 	likers = models.TextField(null=True)
 	def get_date(self):
 		return str(self.pub_date.date())

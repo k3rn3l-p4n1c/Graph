@@ -1,22 +1,36 @@
-from django.utils import simplejson
+from django.utils import simplejson,timezone
 from dajaxice.decorators import dajaxice_register
+from dajax.core import Dajax
 from vertex.models import *
 from login.views import authDetail
 
 @dajaxice_register(method = 'POST' , name = 'sayhello')
-def sayhello(request,likes,do,flow_id=None):
+def sayhello(request,likes,do,flow_id=None,text=""):
 	if do == 'like':
 		flow=Flow.objects.get(id = int(flow_id))
 		flow.like(likes)
 		#create like codes here
 		return simplejson.dumps({'message':'likes : %s'%likes})
 	elif do == 'comment':
+		flow = Flow.objects.get(id = flow_id)
+		newcomment = Comment.objects.create(text = text,pub_date=timezone.now,owner = likes)
+		newcomment.save()
+		flow.comment_set.add(newcomment)
+		flow.save()
 		#create comment codes here
 		return simplejson.dumps({'message':'comment %s'%likes})
 	elif do == 'forward':
 		#create you forward codes here 
-		pass
-	elif do == 'falow':
+		flow = Flow.objects.get(id = flow_id)
+		flow.last_forward_date = timezone.now()
+		flow.save()
+		vertex = Vertex.objects.get(user_id = likes)
+		followers_list = vertex.get_followers()
+		for followers in followers_list:
+			followers.flow_set.add(flow)
+			followers.save()
+
+	elif do == 'follow':
 		#create falow's code here
 		print 'follow:',likes
 		if authDetail(request)[0]:
@@ -39,4 +53,6 @@ def sayhello(request,likes,do,flow_id=None):
 			except:
 				pass
 		return simplejson.dumps({'message':"unfollow"})
+	elif do=='post':
+		print flow_id;
 	print do

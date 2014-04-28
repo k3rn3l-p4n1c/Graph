@@ -46,6 +46,7 @@ INSTALLED_APPS = (
     'django.contrib.humanize',
     'django.contrib.sites',
     'dajaxice',
+    'dajax',
     'vertex',
     'chat',   
 )

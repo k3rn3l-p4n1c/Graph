@@ -287,3 +287,28 @@ div#actions ul li {
 	position: absolute;
 	top: 40%;
 }
+.comment{
+	border:none;
+	text-align: center;
+}
+.cm{
+	width:100%;
+}
+.cm_inp{
+	width: 100%;
+	border-radius: 0px;
+	border:none;
+	min-height: 35px;
+	color: #000;
+}
+.btn_cm{
+	margin:auto;
+	width: 50%;
+	text-align: center;
+	margin-left:25%;
+	background: #333;
+	border: solid 1px #ccc;
+	border-radius: 5px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
