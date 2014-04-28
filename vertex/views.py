@@ -1,7 +1,6 @@
 from django.shortcuts import render_to_response,RequestContext
 from django.http import HttpResponse,HttpResponseRedirect
 from vertex.models import Vertex,Edge,Flow
-import json
 from django.utils import timezone
 from login.views import authDetail
 
@@ -28,6 +27,7 @@ def profile(request, user_id):
 		following = vertex in client.get_following()
 	else:
 		following = False
+	#
 	if me:
 		return render_to_response('vertex.html',
 {"VERTEX_DETAIL":"Yourself"                         ,"VERTEX_ID":user_id, "FOLLOWING_VERTEX":vertex.get_following(), "FOLLOWER_VERTEX":vertex.get_followers(),"flows":flows,"COUNTRY":vertex.country , "CITY":vertex.city,"phone":vertex.tel,"email":vertex.email,"Gender":heOrShe,"BIRTHDAY":vertex.birthdate,"AGE": vertex.age(),"login":client!=None },
@@ -71,8 +71,7 @@ def forward(request,user_id,flow_id):
 	vertex = Vertex.objects.get(user_id = user_id)
 	forward_to = "all"
 	if forward_to == "all":
-		followers_list = ve
-		rtex.get_followers()
+		followers_list = vertex.get_followers()
 		for followers in followers_list:
 			followers.flow_set.add(flow)
 			followers.save()
